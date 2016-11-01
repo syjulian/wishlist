@@ -1,1 +1,21 @@
-<p>This is the wishDetails view.</p>
+
+    <link rel="stylesheet" href="styles/details.css">
+<div class='container-fluid'>
+
+<h1>{{wish.name}}</h1>
+<div class="row">
+  <img src="{{wish.imageUrl}}" />
+</div>
+<div class="row">
+  <label for="a">Requester: </label><span>{{wish.requestor}}</span>
+</div>
+<div class="row">
+  <label for="b">Wish: </label><span>{{wish.name}}</span>
+</div>
+<div class="row">
+  <label for="c">link: </label><span>{{wish.url}}</span>
+</div>
+<div class="row">
+  <textarea rows="5" cols="20">{{wish.description}}</textarea>
+</div>
+</div>
