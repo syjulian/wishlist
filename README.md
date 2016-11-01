@@ -6,7 +6,7 @@
 2. setup proxy for nodejs and bower
 		npm config set proxy xxxxxxxxxxx
 		npm config set https-proxy xxxxxxxxxxxxxx
-	Update .bowerrc withi proxy info
+	Add .bowerrc file to root dir
 3. download and install grunt-cli and bower
 		npm install -g grunt-cli
 		npm install -g bower
