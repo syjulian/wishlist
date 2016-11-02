@@ -1,3 +1,36 @@
-<div class="row" ng-repeat="wish in wishes">
-	<span ng-bind="wish.score"></span> <span ng-bind="wish.name"></span>
+<div class="page-header"><h2>Wishlist</h2></div>
+
+<!-- filter -->
+<div class="input-group">
+    <input type="text" class="form-control" id="query" ng-model="query"/>
+    <span class="input-group-addon glyphicon glyphicon-search"></span>
 </div>
+
+<!-- sort -->
+<div class="btn-group">
+  <button class="btn btn-default btn-s dropdown-toggle" 
+          type="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+    {{selectedOrder.label || 'Sort by'}} <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+      <li ng-repeat="opt in orderOpts" ng-click="onSortClick(opt)">
+          {{opt.label}}
+      <li>
+  </ul>
+</div>
+
+<!-- list -->
+<ul class="list-group" style="list-style:none"> 
+  <li ng-repeat="wish in wishes | filter:query | orderBy: selectedOrder.val"
+      ng-click="onItemLike(wish)"
+      class="list-group-item"
+      >
+      <span class="glyphicon glyphicon-thumbs-up"
+            ng-click="wish.liked = !wish.liked"
+            ng-class="{'wish-liked': wish.liked}"></span>
+      <strong>{{wish.name}}</strong>
+      <span class="badge">{{wish.score}}</span>
+      <br/>
+  </li>
+</ol>
