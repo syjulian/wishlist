@@ -1,52 +1,44 @@
 <link rel="stylesheet" href="styles/makeWish.css">
-
-<div class='container-fluid' ng-controller="MakewishCtrl">
-  <form novalidate class="form" ng-submit="submit()" method="post">
-    <div class="control-group">
-      <label>Wish: </label>
-      <div class="controls">
-        <input type="text" ng-model="wish.title" /><br />
-      </div>
-    </div>
-    <div class="control-group">
-      <label>Image URL: </label>
-      <div class="controls">
-        <input type="text" ng-model="wish.image" /><br />
-      </div>
-    </div>  
-    <div class="control-group">
-      <label>Relevant URL (if applicable): </label>
-      <div class="controls">
-        <input type="text" ng-model="wish.product_url" /><br />
-      </div>
-    </div>
-    <div class="control-group">
-      <label>Expected Cost: </label>
-      <div class="controls">
-        <input type="number" ng-model="wish.cost" /><br />
-      </div>
-    </div>
-    <div class="control-group">
-      <label>Category:</label>
-      <div class="controls">
-        <select ng-model="wish.category" ng-options="x for x in ['Item', 'Event', 'Process', 'Other']">
-        </select><br \>
-        <input ng-if="wish.category == 'Other'" ng-model="wish.otherCategory"></br>
-      </div>
-    </div>
-    <div class="control-group">
-      <label>Reason:</label>
-      <div class="controls">
-        <select ng-model="wish.reason" ng-options="x for x in ['Improve productivity', 'Improve morale', 'Improve communication', 'Maintain existing service', 'Other']">
-        </select><br \>
-        <input ng-if="wish.reason == 'Other'" ng-model="wish.otherReason"></br>
-      </div>
-    </div>
-    <div class="control-group">
-      <div class="controls">
-        <input type="text-area" ng-model="wish.explaination" /><br />
-      </div>  
-    </div>
-    <input type="submit" id="submit" value="Submit" />
-  </form>    
+<h2>Make a Wish</h2>
+<div class="alert alert-danger" role="alert" ng-repeat="error in errors">
+	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	<span class="sr-only">Error:</span>
+	<span ng-bind="error"></span>
 </div>
+<form class="form" name="makeWishForm">
+	<div class="form-group">
+		<label for="name">Name:</label>
+		<input type="text" class="form-control" id="name" ng-model="wish.name" ng-required="true">
+	</div>
+	<div class="form-group">
+		<label for="image">Image URL:</label>
+		<input type="text" class="form-control" id="image" ng-model="wish.image">
+	</div>
+	<div class="form-group">
+		<label for="url">Relevant URL (if applicable):</label>
+		<input type="text" class="form-control" id="url" ng-model="wish.url">
+	</div>
+	<div class="form-group">
+		<label for="cost">Expected Cost:</label>
+		<input type="text" class="form-control" id="cost" ng-model="wish.cost" ng-required="true">
+	</div>
+	<div class="form-group">
+		<label for="category">Category:</label>
+		<select class="form-control" id="category" ng-model="wish.category" ng-options="x for x in categories" ng-required="true"></select>
+	</div>
+	<div class="form-group" ng-show="wish.category === 'Other'">
+		<input type="text" class="form-control" id="otherCategory" ng-model="wish.otherCategory" ng-required="wish.category === 'Other'">
+	</div>
+	<div class="form-group">
+		<label for="category">Reason:</label>
+		<select class="form-control" id="reason" ng-model="wish.reason" ng-options="x for x in reasons" ng-required="true"></select>
+	</div>
+	<div class="form-group" ng-show="wish.reason === 'Other'">
+		<input type="text" class="form-control" id="otherReason" ng-model="wish.otherReason" ng-required="wish.reason === 'Other'">
+	</div>
+	<div class="form-group">
+		<label for="comment">Description:</label>
+		<textarea class="form-control" rows="5" id="description" ng-model="wish.description" ng-required="true"></textarea>
+	</div>
+	<button class="btn btn-success btn-lg submit" ng-click="submit()">Submit!</button>
+</form>
