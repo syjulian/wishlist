@@ -8,13 +8,12 @@
  * Controller of the wishlistApp
  */
 angular.module('wishlistApp')
-  .controller('WishdetailsCtrl', ['$scope', '$location', 'wishApiService', function ($scope, $location, wishApiService) {
+  .controller('WishdetailsCtrl', ['$scope', '$location', 'wishApiService', 'selectedWishService', function ($scope, $location, wishApiService, selectedWishService) {
 		
-		var selectedWish = 0;
-		$scope.wish = wishApiService.wishes[selectedWish];
+		$scope.wish = selectedWishService.getWish();
 
 		$scope.goBack = function(){
-			$location.path('/wishlist');
+			$location.path(selectedWishService.getBack());
 		};
 
 		$scope.clickedHeart = function() {

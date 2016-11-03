@@ -8,59 +8,20 @@
  * Controller of the wishlistApp
  */
 angular.module('wishlistApp')
-  .controller('AdminCtrl', function ($scope) {
-	$scope.wishes = [
-  		{
-  			requestor: 'Josh',
-  			name: 'Pumpkins',
-  			url: 'pumpkins.com',
-  			reason: 'I\'m hungry',
-  			score: 5,
-  			status: 'pending', // admin can change to {'approved','rejected','crowd'}
-  			liked: false,
-  			description: 'Pumpkins are so yummy!',
-  			imageUrl: 'pumpkin.jpg',
-  			comments: null, // to be filled out by admin upon status change
-  			cost: 14.99
-  		},
-  		{
-  			requestor: 'Josh',
-  			name: 'Pumpkins',
-  			url: 'pumpkins.com',
-  			reason: 'I\'m hungry',
-  			score: 5,
-  			status: 'approved', // admin can change to {'approved','rejected','crowd'}
-  			liked: false,
-  			description: 'Pumpkins are so yummy!',
-  			imageUrl: 'pumpkin.jpg',
-  			comments: null, // to be filled out by admin upon status change
-  			cost: 14.99
-  		},
-  		{
-  			requestor: 'Josh',
-  			name: 'Pumpkins',
-  			url: 'pumpkins.com',
-  			reason: 'I\'m hungry',
-  			score: 5,
-  			status: 'rejected', // admin can change to {'approved','rejected','crowd'}
-  			liked: false,
-  			description: 'Pumpkins are so yummy!',
-  			imageUrl: 'pumpkin.jpg',
-  			comments: null, // to be filled out by admin upon status change
-  			cost: 14.99
-  		},
-  		{
-  			requestor: 'Josh',
-  			name: 'Pumpkins',
-  			url: 'pumpkins.com',
-  			reason: 'I\'m hungry',
-  			score: 5,
-  			status: 'crowd', // admin can change to {'approved','rejected','crowd'}
-  			liked: false,
-  			description: 'Pumpkins are so yummy!',
-  			imageUrl: 'pumpkin.jpg',
-  			comments: null, // to be filled out by admin upon status change
-  			cost: 14.99
-  		}
-	];
+  .controller('AdminCtrl', function ($scope, $location, selectedWishService, wishApiService) {
+	$scope.wishes = wishApiService.wishes;
+	$scope.statusSelect = 'pending';
+	
+	$scope.statusFilter = function(wish) {
+		if ($scope.statusSelect === 'popular') {
+			return wish.status === 'pending' && wish.score > 20;
+		}
+		return !$scope.statusSelect || wish.status === $scope.statusSelect;
+	};
+	
+	$scope.selectWish = function(wish) {
+		selectedWishService.setWish(wish);
+		selectedWishService.setBack('/admin');
+		$location.path('/wishDetails');
+	};
 });

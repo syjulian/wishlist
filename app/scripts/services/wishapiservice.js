@@ -26,31 +26,58 @@ angular.module('wishlistApp')
     			cost: 514.99
     		},
     		{
-    			requestor: 'Drake',
-    			name: 'Pumpkins',
-    			url: 'pumpkins.com',
-    			reason: 'I\'m hungry',
-    			score: 4,
-    			status: 'pending', // admin can change to {'approved','rejected','crowd'}
-    			liked: false,
-    			description: 'Pumpkins are so yummy!',
-    			imageUrl: 'pumpkin.jpg',
-    			comments: null, // to be filled out by admin upon status change
-    			cost: 14.99
-    		},
-    		{
-    			requestor: 'Josh',
-    			name: 'Pumpkins',
-    			url: 'pumpkins.com',
-    			reason: 'I\'m hungry',
-    			score: 5,
-    			status: 'pending', // admin can change to {'approved','rejected','crowd'}
-    			liked: false,
-    			description: 'Pumpkins are so yummy!',
-    			imageUrl: 'https://s-media-cache-ak0.pinimg.com/736x/0a/a7/8a/0aa78af25e114836e1a42585fb7b09ed.jpg',
-    			comments: null, // to be filled out by admin upon status change
-    			cost: 14.99
-    		}
+	  			requestor: 'Josh',
+	  			name: 'Pumpkins',
+	  			url: 'pumpkins.com',
+	  			reason: 'I\'m hungry',
+	  			score: 5,
+	  			status: 'pending', // admin can change to {'approved','rejected','crowd'}
+	  			liked: false,
+	  			description: 'Pumpkins are so yummy!',
+	  			imageUrl: 'http://healthyrise.com/wp-content/uploads/2016/09/Pumpkin-5.gif',
+	  			comments: null, // to be filled out by admin upon status change
+	  			cost: 14.99
+	  		},
+	  		{
+	  			requestor: 'Josh',
+	  			name: 'Pumpkins',
+	  			url: 'pumpkins.com',
+	  			reason: 'I\'m hungry',
+	  			score: 25,
+	  			status: 'approved', // admin can change to {'approved','rejected','crowd'}
+	  			liked: false,
+	  			description: 'Pumpkins are so yummy!',
+	  			imageUrl: 'http://healthyrise.com/wp-content/uploads/2016/09/Pumpkin-5.gif',
+	  			comments: null, // to be filled out by admin upon status change
+	  			cost: 14.99
+	  		},
+	  		{
+	  			requestor: 'Josh',
+	  			name: 'Pumpkins',
+	  			url: 'pumpkins.com',
+	  			reason: 'I\'m hungry',
+	  			score: 5,
+	  			status: 'rejected', // admin can change to {'approved','rejected','crowd'}
+	  			liked: false,
+	  			description: 'Pumpkins are so yummy!',
+	  			imageUrl: 'http://healthyrise.com/wp-content/uploads/2016/09/Pumpkin-5.gif',
+	  			comments: null, // to be filled out by admin upon status change
+	  			cost: 14.99
+	  		},
+	  		{
+	  			requestor: 'Josh',
+	  			name: 'Pumpkins',
+	  			url: 'pumpkins.com',
+	  			reason: 'I\'m hungry',
+	  			score: 5,
+	  			status: 'crowd', // admin can change to {'approved','rejected','crowd'}
+	  			liked: false,
+	  			description: 'Pumpkins are so yummy!',
+	  			imageUrl: 'http://healthyrise.com/wp-content/uploads/2016/09/Pumpkin-5.gif',
+	  			comments: null, // to be filled out by admin upon status change
+	  			cost: 14.99,
+	  			raised: 10.99
+	  		}
     	];
         // TODO pull from backend
       };

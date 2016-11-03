@@ -1,1 +1,28 @@
-<p>This is the admin view.</p>
+<link rel="stylesheet" href="styles/admin.css">
+<h2>Admin List</h2>
+
+<!-- filter -->
+<div class="form-group">
+  <label for="filter">Filter by:</label>
+  <select class="form-control" id="filter" ng-model="statusSelect">
+    <option value="">All</option>
+    <option value="popular" selected>Popular</option>
+    <option value="pending">Pending</option>
+    <option value="approved">Approved</option>
+    <option value="rejected">Rejected</option>
+    <option value="crowd">Crowd Sourced</option>
+  </select>
+</div>
+
+<!-- list -->
+<div class="list-group">
+	<div ng-repeat="wish in wishes | filter:statusFilter:true | orderBy: 'name'" ng-click="selectWish(wish)" class="list-group-item">
+			<span class="glyphicon glyphicon-ok green-iconstyle status-icon" title="approve" ng-show="wish.status==='approved'"></span>
+			<span class="glyphicon glyphicon-remove red-iconstyle status-icon" title="reject" ng-show="wish.status==='rejected'"></span>
+			<span class="glyphicon glyphicon-user purple-iconstyle status-icon" title="crowdsource" ng-show="wish.status==='crowd'"></span>
+			<span class="glyphicon glyphicon-heart light-red-iconstyle status-icon" title="pending" ng-show="wish.status==='pending'"></span>
+			<span class="wish-name">{{wish.name}}</span>
+			<span ng-show="wish.status==='pending'" class="badge">{{wish.score}}</span>
+			<span ng-show="wish.status==='crowd' && wish.raised" class="badge">${{wish.raised}}</span>
+	</div>
+</div>
