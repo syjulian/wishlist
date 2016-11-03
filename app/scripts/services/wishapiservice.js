@@ -47,7 +47,7 @@ angular.module('wishlistApp')
     			status: 'pending', // admin can change to {'approved','rejected','crowd'}
     			liked: false,
     			description: 'Pumpkins are so yummy!',
-    			imageUrl: 'pumpkin.jpg',
+    			imageUrl: 'https://s-media-cache-ak0.pinimg.com/736x/0a/a7/8a/0aa78af25e114836e1a42585fb7b09ed.jpg',
     			comments: null, // to be filled out by admin upon status change
     			cost: 14.99
     		}
