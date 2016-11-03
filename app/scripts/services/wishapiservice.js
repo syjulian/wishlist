@@ -8,8 +8,21 @@
  * Service in the wishlistApp.
  */
 angular.module('wishlistApp')
-  .factory('wishApiService', function () {
+  .factory('wishApiService', function ($http) {
       var _wishes = [];
+      var createWish = function(wish) {
+		console.log("creating wish")
+		console.log(wish)
+                $http({
+  			method: 'POST',
+  			url: '/createWish',
+                        data: wish
+		}).then(function successCallback(response) {
+    			alert("WE DID IT!")
+  		}, function errorCallback(response) {
+    			alert("oh no, there was an error")
+  		});
+      };
       var syncWishes = function() {
       	_wishes = [
   		    {
@@ -91,7 +104,8 @@ angular.module('wishlistApp')
 
       return {
           wishes:  _wishes,
+          createWish: createWish,
           syncWishes: syncWishes,
-          updateWish: updateWish
+          updateWish: updateWish,
       };
   });
