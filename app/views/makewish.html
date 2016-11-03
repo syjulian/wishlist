@@ -1,50 +1,52 @@
 <link rel="stylesheet" href="styles/makeWish.css">
 
-<div class='container-fluid' ng-controller>
+<div class='container-fluid' ng-controller="MakewishCtrl">
   <form novalidate class="form" ng-submit="submit()" method="post">
     <div class="control-group">
       <label>Wish: </label>
-	  <div class="controls">
-	    <input type="text" ng-model="wish.title" /><br />
+      <div class="controls">
+        <input type="text" ng-model="wish.title" /><br />
       </div>
-      <input type="file" id="file" ng-model="wish.file" name="file"/>  
-	</div>
-	<div class="control-group">
-	  <label>Relevant URL (if applicable): </label>
-	  <div class="controls">
-	    <input type="text" ng-model="wish.product_url" /><br />
-	  </div>
-	</div>
-	<div class="control-group">
-	  <label>Expected Cost: </label>
-	  <div class="controls">
-	    <input type="number" ng-model="wish.cost" /><br />
-	  </div>
-	</div>
-	<div class="control-group">
+    </div>
+    <div class="control-group">
+      <label>Image URL: </label>
+      <div class="controls">
+        <input type="text" ng-model="wish.image" /><br />
+      </div>
+    </div>  
+    <div class="control-group">
+      <label>Relevant URL (if applicable): </label>
+      <div class="controls">
+        <input type="text" ng-model="wish.product_url" /><br />
+      </div>
+    </div>
+    <div class="control-group">
+      <label>Expected Cost: </label>
+      <div class="controls">
+        <input type="number" ng-model="wish.cost" /><br />
+      </div>
+    </div>
+    <div class="control-group">
       <label>Category:</label>
-	  <div class="controls">
+      <div class="controls">
         <select ng-model="wish.category" ng-options="x for x in ['Item', 'Event', 'Process', 'Other']">
         </select><br \>
-	    <input ng-if="wish.category == 'Other'" ng-model="wish.otherCategory"></br>
-	  </div>
-	</div>
-	<div class="control-group">
+        <input ng-if="wish.category == 'Other'" ng-model="wish.otherCategory"></br>
+      </div>
+    </div>
+    <div class="control-group">
       <label>Reason:</label>
-	  <div class="controls">
+      <div class="controls">
         <select ng-model="wish.reason" ng-options="x for x in ['Improve productivity', 'Improve morale', 'Improve communication', 'Maintain existing service', 'Other']">
         </select><br \>
-	    <input ng-if="wish.reason == 'Other'" ng-model="wish.otherReason"></br>
-	  </div>
-	</div>
-	<div class="control-group">
-	  <div class="controls">
-	    <input type="text-area" ng-model="wish.explaination" /><br />
+        <input ng-if="wish.reason == 'Other'" ng-model="wish.otherReason"></br>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <input type="text-area" ng-model="wish.explaination" /><br />
       </div>  
-	</div>
+    </div>
     <input type="submit" id="submit" value="Submit" />
-  </form>
-  <pre>{{wish}}</pre>
-  <pre>{{list}}</pre>
-	
+  </form>    
 </div>
