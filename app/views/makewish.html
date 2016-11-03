@@ -1,13 +1,13 @@
 <link rel="stylesheet" href="styles/makeWish.css">
 
-<div class='container-fluid'>
-	
-  <form novalidate class="form" method="post">
+<div class='container-fluid' ng-controller>
+  <form novalidate class="form" ng-submit="submit()" method="post">
     <div class="control-group">
       <label>Wish: </label>
 	  <div class="controls">
 	    <input type="text" ng-model="wish.title" /><br />
-      </div>  
+      </div>
+      <input type="file" id="file" ng-model="wish.file" name="file"/>  
 	</div>
 	<div class="control-group">
 	  <label>Relevant URL (if applicable): </label>
@@ -18,7 +18,7 @@
 	<div class="control-group">
 	  <label>Expected Cost: </label>
 	  <div class="controls">
-	    <input type="text" ng-model="wish.cost" /><br />
+	    <input type="number" ng-model="wish.cost" /><br />
 	  </div>
 	</div>
 	<div class="control-group">
@@ -42,8 +42,9 @@
 	    <input type="text-area" ng-model="wish.explaination" /><br />
       </div>  
 	</div>
-    <input type="submit" value="Save" />
+    <input type="submit" id="submit" value="Submit" />
   </form>
-	
+  <pre>{{wish}}</pre>
+  <pre>{{list}}</pre>
 	
 </div>
