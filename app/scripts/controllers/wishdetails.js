@@ -20,8 +20,11 @@ angular.module('wishlistApp')
 		$scope.clickedHeart = function() {
 			var liked = $scope.wish.liked;
 			$scope.wish.liked = !$scope.wish.liked;
-			if (liked) $scope.wish.score -=1;
-			else $scope.wish.score +=1;
+			if (liked) {
+				$scope.wish.score -=1;
+			} else {
+				$scope.wish.score +=1;
+			}
 			console.log($scope.wish.score);
-		}
+		};
   }]);

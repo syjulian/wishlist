@@ -18,6 +18,6 @@ angular.module('wishlistApp')
       $scope.wishes = wishApiService.wishes;
 
       $scope.onSortClick = function(opt) {
-          $scope.selectedOrder = opt
+          $scope.selectedOrder = opt;
       };
   });

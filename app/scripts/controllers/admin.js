@@ -62,4 +62,5 @@ angular.module('wishlistApp')
   			comments: null, // to be filled out by admin upon status change
   			cost: 14.99
   		}
-	]});
+	];
+});
