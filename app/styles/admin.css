@@ -1,0 +1,40 @@
+.status-icon {
+  font-size: 20px;
+  padding: 0;
+  padding-right: 20px;
+}
+
+.red-iconstyle {
+  color: #ca0a00;
+}
+
+.light-red-iconstyle {
+  color: #fd4d51;
+}
+
+.blue-iconstyle {
+  color: #073160;
+}
+
+.green-iconstyle {
+  color: #1f632a;
+}
+
+.orange-iconstyle {
+  color: #da6c00;
+}
+
+.purple-iconstyle {
+  color: #512d71;
+}
+
+.list-group-item {
+	pointer-events: all;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.wish-name {
+	font-weight: bold;
+}
+
