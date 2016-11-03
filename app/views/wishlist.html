@@ -1,10 +1,5 @@
+<link rel="stylesheet" href="styles/wishlist.css">
 <div class="page-header"><h2>Wishlist</h2></div>
-
-<!-- filter -->
-<div class="input-group">
-    <input type="text" class="form-control" id="query" ng-model="query"/>
-    <span class="input-group-addon glyphicon glyphicon-search"></span>
-</div>
 
 <!-- sort -->
 <div class="btn-group">
@@ -22,14 +17,18 @@
 
 <!-- list -->
 <ul class="list-group" style="list-style:none"> 
-  <li ng-repeat="wish in wishes | filter:query | orderBy: selectedOrder.val"
-      ng-click="onItemLike(wish)"
+  <li ng-repeat="wish in wishes | filter:query | orderBy: selectedOrder.val || '-score'"
       class="list-group-item"
       >
-      <span class="glyphicon glyphicon-thumbs-up"
-            ng-click="wish.liked = !wish.liked"
-            ng-class="{'wish-liked': wish.liked}"></span>
-      <strong>{{wish.name}}</strong>
+      <span ng-click="onLikeClick(wish)">
+	    <span class="glyphicon glyphicon-heart status-icon red-iconstyle" 
+              ng-show="wish.liked"></span>
+	    <span class="glyphicon glyphicon-heart-empty status-icon red-iconstyle" 
+              ng-show="!wish.liked"></span>
+      </span>
+      <strong ng-click="selectWish(wish)">
+        {{wish.name}}
+      </strong>
       <span class="badge">{{wish.score}}</span>
       <br/>
   </li>
