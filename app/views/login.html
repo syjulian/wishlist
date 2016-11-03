@@ -1,1 +1,17 @@
-<p>This is the login view.</p>
+<div class='container-fluid' ng-controller="LoginCtrl">
+  <form novalidate class="form" ng-submit="login()" method="post">
+  	<div class="control-group">
+      <label>Attuid: </label>
+      <div class="controls">
+        <input type="text" ng-model="form.attuid" /><br />
+      </div>
+    </div>
+    <div class="control-group">
+      <label>Password: </label>
+      <div class="controls">
+        <input type="text" ng-model="form.password" /><br />
+      </div>
+    </div>
+    <input type="submit" id="login" value="Login" />
+  </form>
+</div>
