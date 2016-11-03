@@ -1,31 +1,55 @@
 <link rel="stylesheet" href="styles/details.css">
-<div class='container-fluid'>
+<div class='container-fluid outter-container'>
 
-<h1>{{wish.name}}</h1>
-<div class="row image-container">
-  <img src="{{wish.imageUrl}}"/>
-</div>
-<div class="detail-container">
-<div class="row">
-  <label for="a" class='col-md-5'>Requester: </label><div class="col-md-7">{{wish.requestor}}</div>
-</div>
-<div class="row">
-  <label for="b" class='col-md-5'>Wish: </label><div class="col-md-7">{{wish.name}}</div>
-</div>
-<div class="row">
-  <label for="c" class='col-md-5'>Link: </label><div class="col-md-7">{{wish.url}}</div>
-</div>
-<div class="row">
-  <label for="a" class='col-md-5'>Cost: </label><div class="col-md-7">${{wish.cost}}</div>
-</div>
-<div class="row">
-  <label for="a" class='col-md-5'>Reason: </label><div class="col-md-7">{{wish.reason}}</div>
-</div><div class="row">
-  <label for="a" class='col-md-5'>Status: </label><div class="col-md-7">{{wish.status}}</div>
-</div>
-</div>
-<div class="row detail-container">
-  <h4>Description</h4>
- {{wish.description}}
-</div>
+	<h1>{{wish.name}}</h1>
+	<div class="row image-container">
+		<img src="{{wish.imageUrl}}" />
+	</div>
+	<div class="detail-container">
+		<div class="row">
+			<label for="a" class='col-md-5'>Requester: </label>
+			<div class="col-md-7">{{wish.requestor}}</div>
+		</div>
+		<div class="row">
+			<label for="b" class='col-md-5'>Wish: </label>
+			<div class="col-md-7">{{wish.name}}</div>
+		</div>
+		<div class="row">
+			<label for="c" class='col-md-5'>Link: </label>
+			<div class="col-md-7">{{wish.url}}</div>
+		</div>
+		<div class="row">
+			<label for="a" class='col-md-5'>Cost: </label>
+			<div class="col-md-7">${{wish.cost}}</div>
+		</div>
+		<div class="row">
+			<label for="a" class='col-md-5'>Reason: </label>
+			<div class="col-md-7">{{wish.reason}}</div>
+		</div>
+		<div class="row">
+			<label for="a" class='col-md-5'>Status: </label>
+			<div class="col-md-7">{{wish.status}}</div>
+		</div>
+	</div>
+	<div class="row detail-container">
+		<h4>Description</h4>
+		{{wish.description}}
+	</div>
+
+	<div class="button-container" ng-hide="false">
+    <i class="glyphicon glyphicon-arrow-left blue-iconstyle" ng-click="goBack();" title="go to wishlist"></i>
+		<i class="glyphicon red-iconstyle" ng-class="{'glyphicon-heart': wish.liked === true, 'glyphicon-heart-empty': wish.liked === false}" title="like" ng-click="clickedHeart();"></i>
+	</div>
+
+  <div class="button-container" ng-hide="true">
+    <i class="glyphicon glyphicon-ok green-iconstyle" title="approve"></i>
+    <i class="glyphicon glyphicon-remove red-iconstyle" title="reject"></i>
+    <i class="glyphicon glyphicon-user purple-iconstyle" title="crowdsource"></i>
+    <i class="glyphicon glyphicon-comment orange-iconstyle" title="feedback"></i>
+  </div>
+
+  <div class="button-container" ng-hide="true">
+    <i class="glyphicon glyphicon-arrow-left blue-iconstyle" ng-click="goBack();" title="go to wishlist"></i>
+    <i class="glyphicon iconstyle glyphicon-usd green-iconstyle" title="donate!"></i>
+  </div>
 </div>

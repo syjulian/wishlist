@@ -1,10 +1,16 @@
-img {
+.image-container img {
     max-width: 100%;
     height: auto;
     border-radius: 40%;
     border-color: gray;
   border: solid .01ch;
-  padding: 10px;
+  padding: 5px;
+}
+
+.outter-container {
+  min-width: 50%;
+  border-radius: 2%;
+  box-shadow:3px 3px 10px 1px gray;
 }
 
 .image-container {
@@ -14,7 +20,7 @@ img {
   margin: 20px 0;
   border-radius: 3%;
   border-color: gray;
-  border: solid 5px;
+  /*border: solid 1px;*/
 }
 
 h1 {
@@ -27,7 +33,7 @@ h1 {
   margin: 20px 0;
   border-radius: 3%;
   border-color: gray;
-  border: solid 5px;
+  border: solid 1px;
 }
 
 .detail-container>div {
@@ -48,4 +54,68 @@ h1 {
   padding: 5px;
   min-width: 25%;
   max-width: 50%;
+}
+
+.red-iconstyle {
+  color: #ca0a00;
+  font-size: 70px;
+  padding: 0 20px;
+}
+
+.blue-iconstyle {
+  color: #073160;
+  font-size: 70px;
+  padding: 0 20px;
+}
+
+.green-iconstyle {
+  color: #1f632a;
+  font-size: 70px;
+  padding: 0 20px;
+}
+
+.orange-iconstyle {
+  color: #da6c00;
+  font-size: 70px;
+  padding: 0 20px;
+}
+
+.purple-iconstyle {
+  color: #512d71;
+  font-size: 70px;
+  padding: 0 20px;
+}
+
+.button-container {
+  text-align: center;
+  min-width: 50%;
+  padding: 10px 20px;
+  border-radius: 3%;
+  border-color: gray;
+}
+
+.button-container .glyphicon {
+  pointer-events: all;
+  cursor: pointer;
+  cursor: hand;
+}
+
+.red-iconstyle:hover {
+  color: #fd4d51;
+}
+
+.blue-iconstyle:hover {
+  color: #4782c5;
+}
+
+.green-iconstyle:hover {
+  color: #4bb929;
+}
+
+.orange-iconstyle:hover {
+  color: #ffad2d;
+}
+
+.purple-iconstyle:hover {
+  color: #9c3db3;
 }
