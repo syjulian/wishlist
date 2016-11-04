@@ -42,9 +42,24 @@
               <li><a ng-href="#/login">Login</a></li> <!-- For developmenet -->
               <li><a ng-href="#/makeWish">Make a Wish</a></li>
               <li><a ng-href="#/wishlist">Wishlist</a></li>
-              <li><a ng-href="#/admin">Admin</a></li> <!-- Update for admin only -->
-              <li ng-show="isLoggedIn">
-                <a href="javascript:void(0)" ng-click="logout()">Logout</a>
+              <li ng-show="isSupervisor === true">
+                <a ng-href="#/admin">Admin</a>
+              </li>
+              <li class="dropdown" ng-show="isLoggedIn">
+                <a href="javascript:void(0)" class="dropdown-toggle" 
+                   data-toggle="dropdown" role="button" aria-haspopup="true"
+                   aria-expanded="false">{{user.attuid}}
+                   <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li ng-show="isSupervisor === false">
+                    <a>Supervisor: {{user.supervisor}}</a>
+                  </li>
+                  <li><a href="javascript:void(0)"
+                         ng-click="logout()">
+                        Logout
+                      </a>
+                  </li>
+                </ul>
               </li>
             </ul>
           </div>

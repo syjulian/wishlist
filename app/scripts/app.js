@@ -60,7 +60,10 @@ angular
       return localStorage.get('user');
     }, function(newValue) {
       if (newValue) {
+        $rootScope.user = newValue;
         $rootScope.isLoggedIn = true;
+        $rootScope.isSupervisor =
+          ($rootScope.user.supervisor === $rootScope.user.attuid);
       }
     }, true);
 
