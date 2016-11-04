@@ -7,8 +7,8 @@
 	<div class="detail-container">
 		<div class="row">
 			<h4><span class='wishtitle'>{{wish.requestor}}</span>
-			<span ng-show="{{wish.score > 1}}"> and <span style="color: #2196f3; font-size: 25px;"><strong>{{wish.score - 1}}</strong></span> others are</span>
-			<span ng-show="{{wish.score < 1}}"> is </span> wishing for ...</h4>
+			<span ng-show="{{wish.score > 1}}" class="small"> and <span style="color: #8380ae; font-size: 20px;"><strong>{{wish.score - 1}}</strong></span> others are</span>
+			<span ng-show="{{wish.score <= 1}}" class="small"> is </span> <span class="small">wishing for ...</span></h4>
 		</div>
 		<div class="row">
 			<h3 class='product'><a href='{{wish.url}}'>{{wish.name}}</a></h3>
