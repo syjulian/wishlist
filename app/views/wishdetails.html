@@ -6,18 +6,18 @@
 	</div>
 	<div class="detail-container">
 		<div class="row">
-			<h4><span class='wishtitle'>{{wish.requestor}}</span><span ng-show="{{wish.score > 1}}" class="small"> and <span style="color: #8380ae; font-size: 20px;"><strong>{{wish.score - 1}}</strong></span> others are </span><span ng-show="{{wish.score <= 1}}" class="small"> is </span><span class="small">wishing for ...</span></h4>
+			<h4><span class='wishtitle'>{{wish.requestor}}</span><span ng-show="{{wish.score > 1}}"> and <span style="color: #8380ae; font-size: 20px;"><strong>{{wish.score - 1}}</strong></span> others are </span><span ng-show="{{wish.score <= 1}}"> is </span><span>wishing for...</span></h4>
 		</div>
 		<div class="row">
-			<h3 class='product'><a href='{{wish.url}}'>{{wish.name}}</a></h3>
+			<h3 class='product'><a ng-href='{{wish.url}}' target="_blank">{{wish.name}}</a></h3>
 		</div>
 		<div class="row">
-			<h4 class='wishcost'><span class='small'>that costs $</span>{{wish.cost}} <span class='small'>...</span></h4>
-			<span ng-show="{{isCrowd && wish.cost > wish.raised}}" class="small pull-right">$$$ raised: <strong style="color: #00c853; width: 50%;">{{wish.raised.toFixed(2)}}</strong></span>
-			<span ng-show="{{isCrowd && wish.cost <= wish.raised}}" class="small pull-right">We've raised enough <strong style="color: #00c853">$$$</strong>!</span>
+			<h4 class='wishcost'>that costs $<span ng-bind="wish.cost"></span></h4>
+			<span ng-show="{{isCrowd && wish.cost > wish.raised}}" class="pull-right">$$$ raised: <strong style="color: #00c853; width: 50%;">{{wish.raised.toFixed(2)}}</strong></span>
+			<span ng-show="{{isCrowd && wish.cost <= wish.raised}}" class="pull-right">We've raised enough <strong style="color: #00c853">$$$</strong>!</span>
 		</div>
 		<div class="row">
-			<h4><span class='small'>beacause ...</span></h4>
+			<h4><span>because...</span></h4>
 			<h3 class='wishreason'>{{wish.reason}}</h3>
 		</div>
 	</div>
@@ -27,19 +27,26 @@
 			{{wish.description}}
 		</div>
 	</div>
+	<div class="row detail-container" ng-show="wish.status !== 'pending'">
+		<h4 ng-show="wish.status !== 'crowd'">This wish has been <strong ng-show="wish.status === 'approved'">Approved</strong><strong ng-show="wish.status === 'rejected'">Rejected</strong>.</h4>
+		<h4 ng-show="wish.status === 'crowd'">This wish is being <strong>crowd sourced</strong>.</h4>
+		<div class='wishdiscription'ng-show="wish.comments">
+			{{wish.comments}}
+		</div>
+	</div>
 
 	<div class="button-container" ng-show="!isAdmin && !isCrowd">
 		<i class="glyphicon glyphicon-arrow-left blue-iconstyle" ng-click="goBack();" title="go back"></i>
 		<i class="glyphicon red-iconstyle"
 		ng-class="{'glyphicon-heart': wish.liked === true, 'glyphicon-heart-empty': wish.liked === false}"
-		title="like" ng-click="clickedHeart();"></i>
+		title="like" ng-click="clickedHeart();" ng-show="wish.status == 'pending'"></i>
 	</div>
 
-	<div class="button-container" ng-show="isAdmin">
+	<div class="button-container" ng-show="isAdmin && !isCrowd">
 		<i class="glyphicon glyphicon-arrow-left blue-iconstyle" ng-click="goBack();" title="go back"></i>
-		<i class="glyphicon glyphicon-ok green-iconstyle" title="approve" ng-show="{{wish.status == 'pending'}}" ng-click="toApprove()"></i>
-		<i class="glyphicon glyphicon-remove red-iconstyle" title="reject" ng-show="{{wish.status == 'pending'}}" ng-click="toReject()"></i>
-		<i class="glyphicon glyphicon-user purple-iconstyle" title="crowdsource" ng-show="{{wish.status == 'pending'}}" ng-click="toCrowd()"></i>
+		<i class="glyphicon glyphicon-ok green-iconstyle" title="approve" ng-show="wish.status == 'pending'" ng-click="toApprove()"></i>
+		<i class="glyphicon glyphicon-remove red-iconstyle" title="reject" ng-show="wish.status == 'pending'" ng-click="toReject()"></i>
+		<i class="glyphicon glyphicon-user purple-iconstyle" title="crowdsource" ng-show="wish.status == 'pending'" ng-click="toCrowd()"></i>
 		<div id="feedback-box" ng-show="showFeedback">
 			<textarea name="feedback" ng-model="wish.comments"></textarea>
 			<button class="btn btn-sm submit" ng-click="submitFeedback()">
@@ -48,7 +55,7 @@
 		</div>
 	</div>
 
-	<div class="button-container" ng-show="isCrowd && !isAdmin">
+	<div class="button-container" ng-show="isCrowd">
 		<i class="glyphicon glyphicon-arrow-left blue-iconstyle" ng-click="goBack();" title="go to wishlist"></i>
 		<i class="glyphicon iconstyle glyphicon-usd green-iconstyle" title="donate!"
 		ng-class="{'spent-money': $scope.donated === true}"

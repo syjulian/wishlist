@@ -53,7 +53,7 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 			liked : false,
 			description : 'Pumpkins are so yummy!',
 			imageUrl : 'http://healthyrise.com/wp-content/uploads/2016/09/Pumpkin-5.gif',
-			comments : null, // to be filled out by admin upon status change
+			comments : 'I love the idea!', // to be filled out by admin upon status change
 			cost : 14.99
 		}, {
 			requestor : 'Josh',
@@ -65,7 +65,7 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 			liked : false,
 			description : 'Pumpkins are so yummy!',
 			imageUrl : 'http://healthyrise.com/wp-content/uploads/2016/09/Pumpkin-5.gif',
-			comments : null, // to be filled out by admin upon status change
+			comments : 'It is just too much money right now.', // to be filled out by admin upon status change
 			cost : 14.99
 		}, {
 			requestor : 'Josh',

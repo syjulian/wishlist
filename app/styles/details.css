@@ -1,221 +1,219 @@
 .image-container img {
-    max-width: 100%;
-    max-height: 150px;
-    border-radius: 40%;
-    border-color: gray;
-  border: solid .01ch;
-  padding: 5px;
+	max-width: 100%;
+	max-height: 150px;
+	border-radius: 40%;
+	border-color: gray;
+	border: solid .01ch;
+	padding: 5px;
 }
 
 /*.outter-container {
-  min-width: 50%;
-}*/
+ min-width: 50%;
+ }*/
 
 .image-container {
-  text-align: center;
+	text-align: center;
 }
 
 h1 {
-  text-align: center;
+	text-align: center;
 }
 
 .detail-container {
-  min-width: 50%;
-  padding: 10px 20px;
-  margin: 20px 0;
-  border-radius: 3%;
+	min-width: 50%;
+	margin: 20px 0;
+	border-radius: 3%;
 }
 
-.detail-container>div {
-  padding: 2px;
-  border-radius: 3%;
-  margin: 2px;
+.detail-container > div {
+	padding: 2px;
+	border-radius: 3%;
+	margin: 2px;
 }
 
 #donate-box {
-  position: relative;
-  bottom: -9px;
-  right: -17px;
+	position: relative;
+	bottom: -9px;
+	right: -17px;
 }
 
 #donate-box input {
-  width: 60px;
+	width: 60px;
 }
 
 #feedback-box {
-  position: relative;
-  bottom: -9px;
-  right: -17px;
+	position: relative;
+	bottom: -9px;
+	right: -17px;
 }
 
 /*#feedback-box input {
-  width: 200px;
-}*/
+ width: 200px;
+ }*/
 
-#donate-box button.submit:hover,
-#donate-box button.cancel:hover {
-  background-color: blue;
-  color: white;
+#donate-box button.submit:hover, #donate-box button.cancel:hover {
+	background-color: blue;
+	color: white;
 }
 
 .detail-container div label {
-  padding: 5px;
-  margin-right: 10px;
-  min-width: 25%;
-  max-width: 50%;
+	padding: 5px;
+	margin-right: 10px;
+	min-width: 25%;
+	max-width: 50%;
 }
 
 .detail-container div div {
-  display: inline;
-  padding: 5px;
-  min-width: 25%;
-  max-width: 50%;
+	display: inline;
+	padding: 5px;
+	min-width: 25%;
+	max-width: 50%;
 }
 
 .red-iconstyle {
-  color: #ca0a00;
-  font-size: 50px;
-  padding: 5px 10px;
+	color: #ca0a00;
+	font-size: 50px;
+	padding: 5px 10px;
 }
 
 .blue-iconstyle {
-  color: #073160;
-  font-size: 50px;
-  padding: 5px 10px;
+	color: #073160;
+	font-size: 50px;
+	padding: 5px 10px;
 }
 
 .green-iconstyle {
-  color: #1f632a;
-  font-size: 50px;
-  padding: 5px 10px;
+	color: #1f632a;
+	font-size: 50px;
+	padding: 5px 10px;
 }
 
 .spent-money {
-  color: #00e676;
+	color: #00e676;
 }
 
 .orange-iconstyle {
-  color: #da6c00;
-  font-size: 50px;
-  padding: 5px 10px;
+	color: #da6c00;
+	font-size: 50px;
+	padding: 5px 10px;
 }
 
 .purple-iconstyle {
-  color: #512d71;
-  font-size: 50px;
-  padding: 5px 10px;
+	color: #512d71;
+	font-size: 50px;
+	padding: 5px 10px;
 }
 
 .button-container {
-  text-align: center;
-  min-width: 50%;
-  padding: 10px 10px;
-  border-radius: 3%;
+	text-align: center;
+	min-width: 50%;
+	padding: 10px 10px;
+	border-radius: 3%;
 }
 
 .button-container .glyphicon {
-  pointer-events: all;
-  cursor: pointer;
-  cursor: hand;
-  /*width:25%;
-  height:auto;*/
+	pointer-events: all;
+	cursor: pointer;
+	cursor: hand;
+	/*width:25%;
+	 height:auto;*/
 }
 
 .red-iconstyle:hover {
-  color: #fd4d51;
+	color: #fd4d51;
 }
 
 .blue-iconstyle:hover {
-  color: #4782c5;
+	color: #4782c5;
 }
 
 .green-iconstyle:hover {
-  color: #4bb929;
+	color: #4bb929;
 }
 
 .orange-iconstyle:hover {
-  color: #ffad2d;
+	color: #ffad2d;
 }
 
 .purple-iconstyle:hover {
-  color: #9c3db3;
+	color: #9c3db3;
 }
 
-.wishtitle{
-  font-size: 25px;
-  color: #8380ae;
-  font-weight: bold;
+.wishtitle {
+	font-size: 25px;
+	color: #8380ae;
+	font-weight: bold;
 }
 
-.product{
-  max-width: 80%;
-  text-align: center;
-  background-color: #f4f4f8;
-  border-radius: 5%;
-  color: #8380ae;
-  padding: 15px 10px;
-  box-shadow:1px 1px 2px #8380ae;
-  font-size: 20px;
+.product {
+	max-width: 80%;
+	text-align: center;
+	background-color: #f4f4f8;
+	border-radius: 5%;
+	color: #8380ae;
+	padding: 15px 10px;
+	box-shadow: 1px 1px 2px #8380ae;
+	font-size: 20px;
 }
 
 a {
-  color: inherit;
+	color: inherit;
 }
 
-.wishcost{
-  text-align: right;
-  color:#9c0024;
-  font-size: 20px;
-  font-weight: bold;
+.wishcost {
+	text-align: right;
+	color: #9c0024;
+	font-size: 20px;
+	font-weight: bold;
 }
 
 h4 span.small {
-  color: gray;
-  font-size: 14px;
+	color: gray;
+	font-size: 14px;
 }
 
-.wishreason{
-  text-align: center;
-  color: #8380ae;
-  background-color: #f4f4f8;
-  font-size: 20px;
-  padding: 10px 5px;
-  margin-left: 20%;
-  box-shadow:1px 1px 2px #8380ae;
-  max-width: 80%;
+.wishreason {
+	text-align: center;
+	color: #8380ae;
+	background-color: #f4f4f8;
+	font-size: 20px;
+	padding: 10px 5px;
+	margin-left: 20%;
+	box-shadow: 1px 1px 2px #8380ae;
+	max-width: 80%;
 }
 
 div.wishdiscription {
-  box-shadow:1px 1px 2px #8380ae;
-  padding: 20px;
-  border-radius: 3%;
-  background-color:  #f4f4f8;
-  color: #8380ae;
+	box-shadow: 1px 1px 2px #8380ae;
+	padding: 20px;
+	border-radius: 3%;
+	background-color: #f4f4f8;
+	color: #8380ae;
 }
 
 .glyphicon-heart-empty .badge {
-  position: relative;
-  right: 42px;
-  bottom: 40px;
-  font-size: 12px;
-  color:black;
-  background-color: transparent;
+	position: relative;
+	right: 42px;
+	bottom: 40px;
+	font-size: 12px;
+	color: black;
+	background-color: transparent;
 }
 
 .glyphicon-heart .badge {
-  position: relative;
-  right: 42px;
-  bottom: 17px;
-  font-size: 12px;
-  color: white;
-  background-color: transparent;
+	position: relative;
+	right: 42px;
+	bottom: 17px;
+	font-size: 12px;
+	color: white;
+	background-color: transparent;
 }
 
 .glyphicon-usd span.badge {
-  position: relative;
-  right: 103px;
-  bottom: 47px;
-  font-size: 15px;
-  color: #283593;
-  background-color: transparent;
+	position: relative;
+	right: 103px;
+	bottom: 47px;
+	font-size: 15px;
+	color: #283593;
+	background-color: transparent;
 }
