@@ -13,8 +13,10 @@
 		</div>
 		<div class="row">
 			<h4 class="pull-right">that costs <span class='wishcost'>${{wish.cost}}</span></h4>
-			<span ng-show="{{isCrowd && wish.cost > wish.raised}}" class="pull-right">$$$ raised: <strong style="color: #00c853; width: 50%;">{{wish.raised.toFixed(2)}}</strong></span>
-			<span ng-show="{{isCrowd && wish.cost <= wish.raised}}" class="pull-right">We've raised enough <strong style="color: #00c853">$$$</strong>!</span>
+		</div>
+		<div class="row">
+			<h4 ng-show="{{isCrowd && wish.cost > wish.raised}}" class="pull-right">$$$ raised: <strong style="color: #00c853;">{{wish.raised.toFixed(2)}}</strong></h4>
+			<h4 ng-show="{{isCrowd && wish.cost <= wish.raised}}" class="pull-right">We've raised enough <strong style="color: #00c853">$$$</strong>!</h4>
 		</div>
 		<div class="row">
 			<h4><span>because...</span></h4>
