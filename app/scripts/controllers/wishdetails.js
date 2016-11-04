@@ -62,21 +62,27 @@ function($scope, $location, wishApiService, selectedWishService) {
 	};
 
 	$scope.toApprove = function() {
-		$scope.wish.status = 'approved';
+		$scope.newStatus = 'approved';
+		$scope.btnText = 'Approve';
 		$scope.showFeedback = true;
 	};
 	$scope.toReject = function() {
-		$scope.wish.status = 'rejected';
+		$scope.newStatus = 'rejected';
+		$scope.btnText = 'Reject';
 		$scope.showFeedback = true;
 	};
 	$scope.toCrowd = function() {
-		$scope.wish.status = 'crowd';
+		$scope.newStatus = 'crowd';
+		$scope.btnText = 'Crowd Source';
 		$scope.showFeedback = true;
 		$scope.wish.raised = 0;
 	};
 
 	$scope.submitFeedback = function(){
-		console.log($scope.wish.comments);
-		$scope.goBack();
-	}
+		console.log($scope.newComments);
+		// TODO: Call API to udpate wish
+		$scope.wish.status = $scope.newStatus;
+		$scope.wish.comments = $scope.newComments;
+		$scope.showFeedback = false;
+	};
 }]);

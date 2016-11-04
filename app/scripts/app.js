@@ -54,7 +54,7 @@ angular
   })
   .run(function($rootScope, $location, localStorage) {
     $rootScope.isLoggedIn = false;
-    $rootScope.server = "http://wishlist-backend.herokuapp.com/";
+    $rootScope.server = 'http://wishlist-backend.herokuapp.com/';
 
     $rootScope.$watch(function() {
       return localStorage.get('user');

@@ -28,8 +28,8 @@
 		</div>
 	</div>
 	<div class="row detail-container" ng-show="wish.status !== 'pending'">
-		<h4 ng-show="wish.status !== 'crowd'">This wish has been <strong ng-show="wish.status === 'approved'">Approved</strong><strong ng-show="wish.status === 'rejected'">Rejected</strong>.</h4>
-		<h4 ng-show="wish.status === 'crowd'">This wish is being <strong>crowd sourced</strong>.</h4>
+		<h4><span ng-show="wish.status !== 'crowd'">This wish has been <strong ng-show="wish.status === 'approved'">Approved</strong> <strong ng-show="wish.status === 'rejected'">Rejected</strong> <span ng-hide="wish.comments">.</span> </span><span ng-show="wish.status === 'crowd'">This wish is being <strong>crowd sourced</strong><span ng-hide="wish.comments">.</span></span><span ng-show="wish.comments"> with the following supervisor feedback:</span></h4>
+
 		<div class='wishdiscription'ng-show="wish.comments">
 			{{wish.comments}}
 		</div>
@@ -48,9 +48,11 @@
 		<i class="glyphicon glyphicon-remove red-iconstyle" title="reject" ng-show="wish.status == 'pending'" ng-click="toReject()"></i>
 		<i class="glyphicon glyphicon-user purple-iconstyle" title="crowdsource" ng-show="wish.status == 'pending'" ng-click="toCrowd()"></i>
 		<div id="feedback-box" ng-show="showFeedback">
-			<textarea name="feedback" ng-model="wish.comments"></textarea>
-			<button class="btn btn-sm submit" ng-click="submitFeedback()">
-				Submit
+			<div class="form-group">
+				<textarea class="form-control" name="feedback" rows="3" id="description" ng-model="newComments" placeholder="Enter some feedback for the requestor"></textarea>
+			</div>
+			<button class="btn submit capitalize" ng-click="submitFeedback()">
+				{{btnText}}
 			</button>
 		</div>
 	</div>
