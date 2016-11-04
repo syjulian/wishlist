@@ -14,7 +14,7 @@ angular.module('wishlistApp')
   		password: null,
   		error: null
   	};
-  	$scope.default_users = [];
+  	$scope.defaultUsers = [];
 
     $scope.login = function() {
     	$http({
@@ -25,28 +25,28 @@ angular.module('wishlistApp')
     			password: $scope.form.password
     		}
     	}).then(function successCallback(response) {
-    		var user = response['data'];
+    		var user = response.data;
     		if (user) {
-    			localStorage.set('user', response['data']);
+    			localStorage.set('user', response.data);
     			$location.path('/wishlist');
   			} else {
-  				$scope.form.error = "Authentication failed.";
+  				$scope.form.error = 'Authentication failed.';
   			}
     	}, function errorCallback(response) {
     		$scope.form.error = JSON.stringify(response);
     	});
     };
 
-    $scope.get_default_users = function() {
+    $scope.getDefaultUsers = function() {
     	$http({
     		method: 'GET',
     		url: $scope.server + 'get_default_users/'
     	}).then(function successCallback(response) {
-    		$scope.default_users = response['data'];
+    		$scope.defaultUsers = response.data;
     	}, function errorCallback(response) {
     		$scope.form.error = JSON.stringify(response);
     	});
-    }
+    };
 
-  	$scope.get_default_users();
+  	$scope.getDefaultUsers();
   });
