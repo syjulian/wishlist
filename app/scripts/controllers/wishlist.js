@@ -10,22 +10,18 @@
 angular.module('wishlistApp')
   .controller('WishlistCtrl', function ($scope, $location, 
                                         wishApiService, selectedWishService) {
-      $scope.orderOpts = [
-        {label: 'By name', val: 'name'},
-        {label: 'Highest Score', val: '-score'},
-        {label: 'Lower Score', val: 'score '}
-      ];
-      $scope.selectedOrder = null;
+      $scope.statusSelect = '';
+      $scope.orderSelect = 'name';
+
+      $scope.statusFilter = function(wish) {
+		return !$scope.statusSelect || wish.status === $scope.statusSelect;
+	  };
 
       $scope.wishes = wishApiService.wishes;
 
-      $scope.onSortClick = function(opt) {
-          $scope.selectedOrder = opt;
-      };
-
       $scope.onLikeClick = function(wish) {
           wish.liked = !wish.liked;
-          // TODO update backend
+          wishApiService.updateWish(wish);
       };
 
       $scope.selectWish = function(wish) {

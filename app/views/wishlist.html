@@ -2,34 +2,53 @@
 <div class="page-header"><h2>Wishlist</h2></div>
 
 <!-- sort -->
-<div class="btn-group">
-  <button class="btn btn-default btn-s dropdown-toggle" 
-          type="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-    {{selectedOrder.label || 'Sort by'}} <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu">
-      <li ng-repeat="opt in orderOpts" ng-click="onSortClick(opt)">
-          {{opt.label}}
-      <li>
-  </ul>
+<div class="form-group">
+  <label for="filter">Sort by:</label>
+  <select class="form-control" id="filter" ng-model="orderSelect">
+    <option value="name" selected>Name</option>
+    <option value="-score">Most Popular</option>
+    <option value="score">Least Popular</option>
+    <option value="price">Most Expensive</option>
+    <option value="-price">Least Expensive</option>
+    <option value="raised">Most Funded</option>
+    <option value="-raised">Least Funded</option>
+  </select>
+</div>
+
+<!-- filter -->
+<div class="form-group">
+  <label for="filter">Filter by:</label>
+  <select class="form-control" id="filter" ng-model="statusSelect">
+    <option value="">All</option>
+    <option value="pending">Pending</option>
+    <option value="approved">Approved</option>
+    <option value="rejected">Rejected</option>
+    <option value="crowd">Crowd Sourced</option>
+  </select>
 </div>
 
 <!-- list -->
 <ul class="list-group" style="list-style:none"> 
-  <li ng-repeat="wish in wishes | filter:query | orderBy: selectedOrder.val || '-score'"
+  <li ng-repeat="wish in wishes | filter:statusFilter:true | orderBy: orderSelect"
       class="list-group-item"
       >
+	  <!-- not toggle-able -->
+      <span class="glyphicon glyphicon-user status-icon purple-iconstyle" 
+        	ng-show="wish.status === 'crowd'"></span>
+      <span class="glyphicon glyphicon-ok status-icon green-iconstyle" 
+            ng-show="wish.status === 'approved'"></span>
+      <span class="glyphicon glyphicon-remove status-icon red-iconstyle" 
+            ng-show="wish.status === 'rejected'"></span> 
+	  <!-- toggle-able -->
       <span ng-click="onLikeClick(wish)">
-	    <span class="glyphicon glyphicon-heart status-icon red-iconstyle" 
-              ng-show="wish.liked"></span>
-	    <span class="glyphicon glyphicon-heart-empty status-icon red-iconstyle" 
-              ng-show="!wish.liked"></span>
+	    <span class="glyphicon glyphicon-heart status-icon light-red-iconstyle" 
+              ng-show="wish.liked && wish.status === 'pending'"></span>
+	    <span class="glyphicon glyphicon-heart-empty status-icon light-red-iconstyle" 
+              ng-show="!wish.liked && wish.status === 'pending'"></span>
       </span>
-      <strong ng-click="selectWish(wish)">
-        {{wish.name}}
-      </strong>
-      <span class="badge">{{wish.score}}</span>
+      <strong ng-click="selectWish(wish)">{{wish.name}}</strong>
+      <span class="badge" ng-show="wish.status !== 'crowd'">{{wish.score}}</span>
+      <span class="badge" ng-show="wish.status === 'crowd'">${{wish.raised}}</span>
       <br/>
   </li>
 </ol>
