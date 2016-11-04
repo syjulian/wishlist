@@ -27,8 +27,10 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 			liked : false,
 			description : 'It\s spherical!',
 			imageUrl : 'https://media.tenor.co/images/04631b0f77251af5e7dafe0b3a061724/raw',
-			comments : null, // to be filled out by admin upon status change
-			cost : 514.99
+			comments : null, // to be filled out by admin upon status change,
+			cost : 514.99,
+			raised : 10.99,
+			donated: false
 		}, {
 			requestor : 'Tommy',
 			name : 'Rugrats Season 1 DVD',

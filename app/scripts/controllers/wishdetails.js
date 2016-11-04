@@ -9,7 +9,6 @@
  */
 angular.module('wishlistApp').controller('WishdetailsCtrl', ['$scope', '$location', 'wishApiService', 'selectedWishService',
 function($scope, $location, wishApiService, selectedWishService) {
-
 	$scope.wish = selectedWishService.getWish();
 	var calledFrom = selectedWishService.getBack();
 	if (calledFrom === '/admin') {
@@ -55,24 +54,29 @@ function($scope, $location, wishApiService, selectedWishService) {
 			return;
 		}
 		if ($scope.donation > 0) {
-			$scope.wish.donated = true;
 			$scope.wish.raised = $scope.wish.raised + $scope.donation;
 			$scope.showInput = false;
 			$scope.donation = 0;
+			$scope.donated = true;
 		}
 	};
 
 	$scope.toApprove = function() {
 		$scope.wish.status = 'approved';
-		$scope.goBack();
+		$scope.showFeedback = true;
 	};
 	$scope.toReject = function() {
 		$scope.wish.status = 'rejected';
-		$scope.goBack();
+		$scope.showFeedback = true;
 	};
 	$scope.toCrowd = function() {
 		$scope.wish.status = 'crowd';
+		$scope.showFeedback = true;
 		$scope.wish.raised = 0;
-		$scope.goBack();
 	};
+
+	$scope.submitFeedback = function(){
+		console.log($scope.wish.comments);
+		$scope.goBack();
+	}
 }]);

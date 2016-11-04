@@ -42,6 +42,16 @@ h1 {
   width: 60px;
 }
 
+#feedback-box {
+  position: relative;
+  bottom: -9px;
+  right: -17px;
+}
+
+/*#feedback-box input {
+  width: 200px;
+}*/
+
 #donate-box button.submit:hover,
 #donate-box button.cancel:hover {
   background-color: blue;
