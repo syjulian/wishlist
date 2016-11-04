@@ -58,7 +58,7 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 			name : 'Pumpkins',
 			url : 'pumpkins.com',
 			reason : 'I\'m hungry',
-			score : 5,
+			score : 1,
 			status : 'rejected', // admin can change to {'approved','rejected','crowd'}
 			liked : false,
 			description : 'Pumpkins are so yummy!',

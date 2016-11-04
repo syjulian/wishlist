@@ -6,13 +6,17 @@
 	</div>
 	<div class="detail-container">
 		<div class="row">
-			<h4><span class='wishtitle'>{{wish.requestor}}</span> is wishing for ...</h4>
+			<h4><span class='wishtitle'>{{wish.requestor}}</span>
+			<span ng-show="{{wish.score > 1}}"> and <span style="color: #2196f3; font-size: 25px;"><strong>{{wish.score - 1}}</strong></span> others are</span>
+			<span ng-show="{{wish.score < 1}}"> is </span> wishing for ...</h4>
 		</div>
 		<div class="row">
 			<h3 class='product'><a href='{{wish.url}}'>{{wish.name}}</a></h3>
 		</div>
 		<div class="row">
 			<h4 class='wishcost'><span class='small'>that costs $</span>{{wish.cost}} <span class='small'>...</span></h4>
+			<span ng-show="{{isCrowd && wish.cost > wish.raised}}" class="small pull-right">$$$ raised: <strong style="color: #00c853; width: 50%;">{{wish.raised}}</strong></span>
+			<span ng-show="{{isCrowd && wish.cost <= wish.raised}}" class="small pull-right">We've raised enough <strong style="color: #00c853">$$$</strong>!</span>
 		</div>
 		<div class="row">
 			<h4><span class='small'>beacause ...</span></h4>
@@ -28,7 +32,9 @@
 
 	<div class="button-container" ng-show="!isAdmin && !isCrowd">
     	<i class="glyphicon glyphicon-arrow-left blue-iconstyle" ng-click="goBack();" title="go back"></i>
-		<i class="glyphicon red-iconstyle" ng-class="{'glyphicon-heart': wish.liked === true, 'glyphicon-heart-empty': wish.liked === false}" title="like" ng-click="clickedHeart();"><span class="badge">{{wish.score}}</span></i>
+		<i class="glyphicon red-iconstyle" 
+			ng-class="{'glyphicon-heart': wish.liked === true, 'glyphicon-heart-empty': wish.liked === false}" 
+			title="like" ng-click="clickedHeart();"></i>
 	</div>
 
   <div class="button-container" ng-show="isAdmin">
@@ -44,7 +50,6 @@
     <i class="glyphicon iconstyle glyphicon-usd green-iconstyle" title="donate!" 
 			ng-class="{'spent-money': wish.donated}" 
 			ng-click="donateMoney()">
-			<span class="badge" ng-show="wish.donated">{{wish.raised}}</span>
 		</i>
 		<div id="donate-box" ng-show="showInput">
 				<input type="number" name="money" ng-model="donation" />
