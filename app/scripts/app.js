@@ -54,7 +54,7 @@ angular
   })
   .run(function($rootScope, $location, localStorage) {
     $rootScope.isLoggedIn = false;
-    $rootScope.server = 'http://wishlist-backend.herokuapp.com/';
+    $rootScope.server = 'http://localhost:3000/'; //'http://wishlist-backend.herokuapp.com/';
 
     $rootScope.$watch(function() {
       return localStorage.get('user');
@@ -63,6 +63,14 @@ angular
         $rootScope.isLoggedIn = true;
       }
     }, true);
+
+    $rootScope.$watch(function() {
+      return $location.path();
+    }, function(path) {
+      if (!path.endsWith('login') && !$rootScope.isLoggedIn) {
+        $rootScope.logout();
+      }
+    });
 
     $rootScope.logout = function() {
       localStorage.clearAll();
