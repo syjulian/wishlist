@@ -1,23 +1,25 @@
+<h2>Login</h2>
 <div class='container-fluid' ng-controller="LoginCtrl">
-  <form novalidate class="form" ng-submit="login()" method="post">
-  	<div class="control-group">
-      <label>Attuid: </label>
-      <select 
-      	ng-options="user.attuid as user.attuid for user in default_users"
-      	ng-model="form.attuid">
-      </select>
-    </div>
-    <div class="control-group">
-      <label>Password: </label>
-      <div class="controls">
-        <input type="password" ng-model="form.password" /><br />
-      </div>
-    </div>
-    <input type="submit" id="login" value="Login" />
-  </form>
-  <br />
-  <div style="display:inline-block;"
-  		 class="alert alert-danger" ng-show="form.error">
-  	{{form.error}}
-  </div>
+	<form novalidate class="form" method="post">
+
+		<div class="form-group">
+			<label for="attuid">Attuid:</label>
+			<select class="form-control" id="attuid" ng-options="user.attuid as user.attuid for user in default_users"
+			ng-model="form.attuid" ng-required="true"></select>
+		</div>
+
+		<div class="form-group">
+			<label for="name">Password:</label>
+			<input type="password" class="form-control" id="name" ng-model="form.password" ng-required="true">
+		</div>
+		<button class="btn btn-success btn-lg submit" ng-click="login()">
+			Login!
+		</button>
+	</form>
+	<br />
+	<div class="alert alert-danger" role="alert" ng-show="form.error">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		<span class="sr-only">Error:</span>
+		<span ng-bind="form.error"></span>
+	</div>
 </div>
