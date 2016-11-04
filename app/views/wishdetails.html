@@ -12,7 +12,7 @@
 			<h3 class='product'><a ng-href='{{wish.url}}' target="_blank">{{wish.name}}</a></h3>
 		</div>
 		<div class="row">
-			<h4 class='wishcost'>that costs $<span ng-bind="wish.cost"></span></h4>
+			<h4 class="pull-right">that costs <span class='wishcost'>${{wish.cost}}</span></h4>
 			<span ng-show="{{isCrowd && wish.cost > wish.raised}}" class="pull-right">$$$ raised: <strong style="color: #00c853; width: 50%;">{{wish.raised.toFixed(2)}}</strong></span>
 			<span ng-show="{{isCrowd && wish.cost <= wish.raised}}" class="pull-right">We've raised enough <strong style="color: #00c853">$$$</strong>!</span>
 		</div>
