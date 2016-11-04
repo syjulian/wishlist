@@ -11,8 +11,10 @@ angular.module('wishlistApp')
   .controller('LoginCtrl', function ($scope, $http, $location, localStorage) {
   	$scope.form = {
   		attuid: null,
-  		password: null
+  		password: null,
+  		error: null
   	};
+  	$scope.default_users = [];
 
     $scope.login = function() {
     	$http({
@@ -23,10 +25,28 @@ angular.module('wishlistApp')
     			password: $scope.form.password
     		}
     	}).then(function successCallback(response) {
-    		localStorage.set('user', response['data']);
-    		$location.path('/wishlist');
+    		var user = response['data'];
+    		if (user) {
+    			localStorage.set('user', response['data']);
+    			$location.path('/wishlist');
+  			} else {
+  				$scope.form.error = "Authentication failed.";
+  			}
     	}, function errorCallback(response) {
-    		alert('error: ' + JSON.stringify(response));
+    		$scope.form.error = JSON.stringify(response);
     	});
     };
+
+    $scope.get_default_users = function() {
+    	$http({
+    		method: 'GET',
+    		url: $scope.server + 'get_default_users/'
+    	}).then(function successCallback(response) {
+    		$scope.default_users = response['data'];
+    	}, function errorCallback(response) {
+    		$scope.form.error = JSON.stringify(response);
+    	});
+    }
+
+  	$scope.get_default_users();
   });

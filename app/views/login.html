@@ -2,16 +2,22 @@
   <form novalidate class="form" ng-submit="login()" method="post">
   	<div class="control-group">
       <label>Attuid: </label>
-      <div class="controls">
-        <input type="text" ng-model="form.attuid" /><br />
-      </div>
+      <select 
+      	ng-options="user.attuid as user.attuid for user in default_users"
+      	ng-model="form.attuid">
+      </select>
     </div>
     <div class="control-group">
       <label>Password: </label>
       <div class="controls">
-        <input type="text" ng-model="form.password" /><br />
+        <input type="password" ng-model="form.password" /><br />
       </div>
     </div>
     <input type="submit" id="login" value="Login" />
   </form>
+  <br />
+  <div style="display:inline-block;"
+  		 class="alert alert-danger" ng-show="form.error">
+  	{{form.error}}
+  </div>
 </div>
