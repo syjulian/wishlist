@@ -39,9 +39,9 @@
 
   <div class="button-container" ng-show="isAdmin">
 		<i class="glyphicon glyphicon-arrow-left blue-iconstyle" ng-click="goBack();" title="go back"></i>
-    <i class="glyphicon glyphicon-ok green-iconstyle" title="approve" ng-show="{{wish.status == 'pending'}}"></i>
-    <i class="glyphicon glyphicon-remove red-iconstyle" title="reject" ng-show="{{wish.status == 'pending'}}"></i>
-    <i class="glyphicon glyphicon-user purple-iconstyle" title="crowdsource" ng-show="{{wish.status == 'pending'}}"></i>
+    <i class="glyphicon glyphicon-ok green-iconstyle" title="approve" ng-show="{{wish.status == 'pending'}}" ng-click="toApprove()"></i>
+    <i class="glyphicon glyphicon-remove red-iconstyle" title="reject" ng-show="{{wish.status == 'pending'}}" ng-click="toReject()"></i>
+    <i class="glyphicon glyphicon-user purple-iconstyle" title="crowdsource" ng-show="{{wish.status == 'pending'}}" ng-click="toCrowd()"></i>
     <i class="glyphicon glyphicon-comment orange-iconstyle" title="feedback"></i>
   </div>
 

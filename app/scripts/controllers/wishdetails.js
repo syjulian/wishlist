@@ -32,7 +32,7 @@ angular.module('wishlistApp')
 		};
 
 		$scope.donateMoney = function(){
-
+			console.log($scope.wish);
 			$scope.donation = $scope.wish.cost - $scope.wish.raised;
 			if ($scope.wish.cost >= $scope.wish.raised)
 				$scope.showInput = true;
@@ -51,9 +51,23 @@ angular.module('wishlistApp')
 			}
 			if($scope.donation > 0) {
 				$scope.wish.donated = true;
-				$scope.wish.raised = parseInt(($scope.wish.raised + $scope.donation )*100)/100.0;
+				$scope.wish.raised = (parseInt(($scope.wish.raised + $scope.donation+0.001 )*100)+0.001)/100.0;
 				$scope.showInput=false;
 				$scope.donation = 0;
 			}
+		}
+
+		$scope.toApprove = function(){
+			$scope.wish.status = 'approved';
+			$scope.goBack();
+		}
+		$scope.toReject = function(){
+			$scope.wish.status = 'rejected';
+			$scope.goBack();
+		}
+		$scope.toCrowd = function(){
+			$scope.wish.status = 'crowd';
+			$scope.wish.raised = 0;
+			$scope.goBack();
 		}
   }]);
