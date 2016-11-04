@@ -77,7 +77,8 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 			imageUrl : 'http://healthyrise.com/wp-content/uploads/2016/09/Pumpkin-5.gif',
 			comments : null, // to be filled out by admin upon status change
 			cost : 14.99,
-			raised : 10.99
+			raised : 10.99,
+			donated: false
 		}];
 		// TODO pull from backend
 	};

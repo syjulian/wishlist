@@ -1,55 +1,56 @@
 <link rel="stylesheet" href="styles/details.css">
 <div class='container-fluid outter-container'>
 
-	<h1>{{wish.name}}</h1>
 	<div class="row image-container">
-		<img src="{{wish.imageUrl}}" />
+		<a href='{{wish.url}}'><img src="{{wish.imageUrl}}" title="go shopping!" /></a>
 	</div>
 	<div class="detail-container">
 		<div class="row">
-			<label for="a" class='col-md-5'>Requester: </label>
-			<div class="col-md-7">{{wish.requestor}}</div>
+			<h4><span class='wishtitle'>{{wish.requestor}}</span> is wishing for ...</h4>
 		</div>
 		<div class="row">
-			<label for="b" class='col-md-5'>Wish: </label>
-			<div class="col-md-7">{{wish.name}}</div>
+			<h3 class='product'><a href='{{wish.url}}'>{{wish.name}}</a></h3>
 		</div>
 		<div class="row">
-			<label for="c" class='col-md-5'>Link: </label>
-			<div class="col-md-7">{{wish.url}}</div>
+			<h4 class='wishcost'><span class='small'>that costs $</span>{{wish.cost}} <span class='small'>...</span></h4>
 		</div>
 		<div class="row">
-			<label for="a" class='col-md-5'>Cost: </label>
-			<div class="col-md-7">${{wish.cost}}</div>
-		</div>
-		<div class="row">
-			<label for="a" class='col-md-5'>Reason: </label>
-			<div class="col-md-7">{{wish.reason}}</div>
-		</div>
-		<div class="row">
-			<label for="a" class='col-md-5'>Status: </label>
-			<div class="col-md-7">{{wish.status}}</div>
+			<h4><span class='small'>beacause ...</span></h4>
+			<h3 class='wishreason'>{{wish.reason}}</h3>
 		</div>
 	</div>
 	<div class="row detail-container">
 		<h4>Description</h4>
+		<div class='wishdiscription'>
 		{{wish.description}}
+		</div>
 	</div>
 
-	<div class="button-container" ng-hide="false">
-    	<i class="glyphicon glyphicon-arrow-left blue-iconstyle" ng-click="goBack();" title="go to wishlist"></i>
-		<i class="glyphicon red-iconstyle" ng-class="{'glyphicon-heart': wish.liked === true, 'glyphicon-heart-empty': wish.liked === false}" title="like" ng-click="clickedHeart();"></i>
+	<div class="button-container" ng-show="!isAdmin && !isCrowd">
+    	<i class="glyphicon glyphicon-arrow-left blue-iconstyle" ng-click="goBack();" title="go back"></i>
+		<i class="glyphicon red-iconstyle" ng-class="{'glyphicon-heart': wish.liked === true, 'glyphicon-heart-empty': wish.liked === false}" title="like" ng-click="clickedHeart();"><span class="badge">{{wish.score}}</span></i>
 	</div>
 
-  <div class="button-container" ng-hide="true">
+  <div class="button-container" ng-show="isAdmin">
+		<i class="glyphicon glyphicon-arrow-left blue-iconstyle" ng-click="goBack();" title="go back"></i>
     <i class="glyphicon glyphicon-ok green-iconstyle" title="approve"></i>
     <i class="glyphicon glyphicon-remove red-iconstyle" title="reject"></i>
     <i class="glyphicon glyphicon-user purple-iconstyle" title="crowdsource"></i>
     <i class="glyphicon glyphicon-comment orange-iconstyle" title="feedback"></i>
   </div>
 
-  <div class="button-container" ng-hide="true">
+  <div class="button-container" ng-show="isCrowd && !isAdmin">
     <i class="glyphicon glyphicon-arrow-left blue-iconstyle" ng-click="goBack();" title="go to wishlist"></i>
-    <i class="glyphicon iconstyle glyphicon-usd green-iconstyle" title="donate!"></i>
+    <i class="glyphicon iconstyle glyphicon-usd green-iconstyle" title="donate!" 
+			ng-class="{'spent-money': wish.donated}" 
+			ng-click="donateMoney()">
+			<span class="badge" ng-show="wish.donated">{{wish.raised}}</span>
+		</i>
+		<div id="donate-box" ng-show="showInput">
+				<input type="number" name="money" ng-model="donation" />
+				<button class="btn btn-sm submit" ng-click="submit()">Submit</button>
+				<button class="btn btn-sm cancel" ng-click="cancel()">cancel</button>
+			</div>
   </div>
+	
 </div>

@@ -11,6 +11,10 @@ angular.module('wishlistApp')
   .controller('WishdetailsCtrl', ['$scope', '$location', 'wishApiService', 'selectedWishService', function ($scope, $location, wishApiService, selectedWishService) {
 		
 		$scope.wish = selectedWishService.getWish();
+		var calledFrom = selectedWishService.getBack();
+		if(calledFrom == '/admin') $scope.isAdmin = true;
+		else if (calledFrom == '/wishlist') $scope.isAdmin = false;
+		$scope.isCrowd = ($scope.wish.status == 'crowd');
 
 		$scope.goBack = function(){
 			$location.path(selectedWishService.getBack());
@@ -24,6 +28,29 @@ angular.module('wishlistApp')
 			} else {
 				$scope.wish.score +=1;
 			}
-			console.log($scope.wish.score);
 		};
+
+		$scope.donateMoney = function(){
+			$scope.donation = $scope.wish.cost - $scope.wish.raised;
+			$scope.showInput = true;
+			
+		}
+
+		$scope.cancel = function(){
+			$scope.showInput = false;
+			$scope.donation = 0;
+		}
+
+		$scope.submit = function(){
+			if (isNaN($scope.donation)) {
+				$scope.donation = 0;
+				return;
+			}
+			if($scope.donation > 0) {
+				$scope.wish.donated = true;
+				$scope.wish.raised = parseInt(($scope.wish.raised + $scope.donation )*100)/100.0;
+				$scope.showInput=false;
+				$scope.donation = 0;
+			}
+		}
   }]);

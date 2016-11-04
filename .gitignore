@@ -5,3 +5,4 @@
 /bower_components
 .bowerrc
 *.swp
+npm-debug.log
