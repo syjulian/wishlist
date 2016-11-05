@@ -10,6 +10,8 @@
 angular.module('wishlistApp').controller('WishdetailsCtrl', ['$scope', '$location', 'wishApiService', 'selectedWishService',
 function($scope, $location, wishApiService, selectedWishService) {
 	$scope.wish = selectedWishService.getWish();
+	console.log($scope.wish);
+	
 	var calledFrom = selectedWishService.getBack();
 	if (calledFrom === '/admin') {
 		$scope.isAdmin = true;
@@ -21,7 +23,7 @@ function($scope, $location, wishApiService, selectedWishService) {
 	$scope.goBack = function() {
 		$location.path(selectedWishService.getBack());
 	};
-
+	console.log($scope.isAdmin+":"+$scope.isCrowd);
 	$scope.clickedHeart = function() {
 
 		var liked = $scope.wish.liked;

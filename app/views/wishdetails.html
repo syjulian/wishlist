@@ -6,7 +6,7 @@
 	</div>
 	<div class="detail-container">
 		<div class="row">
-			<h4><span class='wishtitle'>{{wish.requestor}}</span><span ng-show="{{wish.score > 1}}"> and <span style="color: #8380ae; font-size: 20px;"><strong>{{wish.score - 1}}</strong></span> others are </span><span ng-show="{{wish.score <= 1}}"> is </span><span>wishing for...</span></h4>
+			<h4><span class='wishtitle'>{{wish.requester}}</span><span ng-show="{{wish.score > 1}}"> and <span style="color: #8380ae; font-size: 20px;"><strong>{{wish.score - 1}}</strong></span> others are </span><span ng-show="{{wish.score <= 1}}"> is </span><span>wishing for...</span></h4>
 		</div>
 		<div class="row">
 			<h3 class='product'><a ng-href='{{wish.url}}' target="_blank">{{wish.name}}</a></h3>
@@ -51,7 +51,7 @@
 		<i class="glyphicon glyphicon-user purple-iconstyle" title="crowdsource" ng-show="wish.status == 'pending'" ng-click="toCrowd()"></i>
 		<div id="feedback-box" ng-show="showFeedback">
 			<div class="form-group">
-				<textarea class="form-control" name="feedback" rows="3" id="description" ng-model="newComments" placeholder="Enter some feedback for the requestor"></textarea>
+				<textarea class="form-control" name="feedback" rows="3" id="description" ng-model="newComments" placeholder="Enter some feedback for the requester"></textarea>
 			</div>
 			<button class="btn submit capitalize" ng-click="submitFeedback()">
 				{{btnText}}
