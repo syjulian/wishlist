@@ -18,12 +18,18 @@ angular.module('wishlistApp')
 	  };
 
       $scope.wishes = wishApiService.wishes;
-      // wishApiService.syncVotes($scope.user.attuid);
       wishApiService.syncVotes();
       $scope.votes = wishApiService.votes;
 
+      console.log($scope.wishes);
+      console.log($scope.votes);
+
       $scope.onLikeClick = function(wish) {
-          // voteService.toggleVote();
+        //TODO: need to fix, it is now just fake sync, need to hook to the service
+          voteService.setVote(wish.wish_id, $scope.user.attuid, $scope.votes);
+          $scope.vote = voteService.getVote();
+          voteService.toggleVote();
+          
           wish.liked = !wish.liked;
           wishApiService.updateWish(wish);
       };

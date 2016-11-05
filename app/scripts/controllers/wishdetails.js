@@ -26,7 +26,7 @@ function($scope, $location, wishApiService, selectedWishService, voteService) {
 	};
 
 	$scope.clickedHeart = function() {
-		voteService.toggleVote();
+		voteService.toggleVote($scope.wish);
 	};
 
 	$scope.donateMoney = function() {

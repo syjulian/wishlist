@@ -15,24 +15,27 @@ angular.module('wishlistApp')
     	getVote: function() {
     		return vote;
     	},
-    	setVote: function(wish_id, attuid, votes) {
+    	setVote: function(wishId, attuid, votes) {
     		for(var i in votes){
-                if(votes[i].wish_id == wish_id && votes[i].user_id == attuid){
+                if(votes[i].wish_id == wishId && votes[i].user_id == attuid){
                     vote = votes[i];
                     return;
                 }
             }
+            vote = {
+                wish_id: wishId,
+                user_id: attuid,
+                voted: 0
+            };
     	},
-        setScore: function(score){
-            if (vote.voted === 1) this.score = score++;
-            else if( vote.voted === 0) this.score = score--;
+        toggleVote: function(wish){
+            if(vote.voted === 1) {
+                vote.voted = 0;
+                wish.score--;
+            } else {
+                vote.voted = 1;
+                wish.score++;
+            }
         },
-        getScore: function(){
-            return score;
-        },
-        toggleVote: function(){
-            if(vote.voted === 1) vote.voted = 0;
-            else vote.voted = 1;
-        }
     };  
   });
