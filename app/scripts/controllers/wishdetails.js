@@ -7,11 +7,12 @@
  * # WishdetailsCtrl
  * Controller of the wishlistApp
  */
-angular.module('wishlistApp').controller('WishdetailsCtrl', ['$scope', '$location', 'wishApiService', 'selectedWishService',
-function($scope, $location, wishApiService, selectedWishService) {
+angular.module('wishlistApp').controller('WishdetailsCtrl', ['$scope', '$location', 'wishApiService', 'selectedWishService', 'voteService',
+function($scope, $location, wishApiService, selectedWishService, voteService) {
 	$scope.wish = selectedWishService.getWish();
-	console.log($scope.wish);
-	
+	$scope.vote = voteService.getVote();
+	console.log($scope.vote);
+
 	var calledFrom = selectedWishService.getBack();
 	if (calledFrom === '/admin') {
 		$scope.isAdmin = true;
@@ -23,16 +24,9 @@ function($scope, $location, wishApiService, selectedWishService) {
 	$scope.goBack = function() {
 		$location.path(selectedWishService.getBack());
 	};
-	console.log($scope.isAdmin+":"+$scope.isCrowd);
-	$scope.clickedHeart = function() {
 
-		var liked = $scope.wish.liked;
-		$scope.wish.liked = !$scope.wish.liked;
-		if (liked) {
-			$scope.wish.score -= 1;
-		} else {
-			$scope.wish.score += 1;
-		}
+	$scope.clickedHeart = function() {
+		voteService.toggleVote();
 	};
 
 	$scope.donateMoney = function() {

@@ -10,7 +10,8 @@
 angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 	var baseUrl = "http://127.0.0.1:3000";
 	var _wishes = [];
-	var _liked = false;
+	var _votes = [];
+	
 	var createWish = function(wish) {
 		return $http({
 			method : 'POST',
@@ -28,73 +29,6 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 			return err;
 		});
 
-
-		// _wishes = [{
-		// 	requestor : 'Josh',
-		// 	name : 'Game Sphere',
-		// 	url : 'gamesphere.com',
-		// 	reason : 'no reason at all',
-		// 	score : 100,
-		// 	status : 'pending', // admin can change to {'approved','rejected','crowd'}
-		// 	liked : false,
-		// 	description : 'It\s spherical!',
-		// 	imageUrl : 'https://media.tenor.co/images/04631b0f77251af5e7dafe0b3a061724/raw',
-		// 	comments : null, // to be filled out by admin upon status change,
-		// 	cost : 514.99,
-		// 	raised : 10.99,
-		// 	donated: false
-		// }, {
-		// 	requestor : 'Tommy',
-		// 	name : 'Rugrats Season 1 DVD',
-		// 	url : 'https://www.amazon.com/Rugrats-Season-Disc-Melanie-Chartoff/dp/B00264H48O',
-		// 	reason : 'Nostalgia feels',
-		// 	score : 300,
-		// 	status : 'pending',
-		// 	liked : false,
-		// 	description : 'What\'s better than a clean diapee and a fresh bottle? How about the first-ever, 25-episode, 4-disc set of the complete First Season of Rugrats! It\'s Tommy, Angelica, Chuckie and the rest of the gang, taking you on adventures from the ground up.',
-		// 	imageUrl : 'https://images-na.ssl-images-amazon.com/images/I/51GaL5wlh8L.jpg',
-		// 	comments : null,
-		// 	cost : 13.29
-		// }, {
-		// 	requestor : 'Josh',
-		// 	name : 'Pumpkins',
-		// 	url : 'pumpkins.com',
-		// 	reason : 'I\'m hungry',
-		// 	score : 25,
-		// 	status : 'approved', // admin can change to {'approved','rejected','crowd'}
-		// 	liked : false,
-		// 	description : 'Pumpkins are so yummy!',
-		// 	imageUrl : 'http://healthyrise.com/wp-content/uploads/2016/09/Pumpkin-5.gif',
-		// 	comments : 'I love the idea!', // to be filled out by admin upon status change
-		// 	cost : 14.99
-		// }, {
-		// 	requestor : 'Josh',
-		// 	name : 'Pumpkins',
-		// 	url : 'pumpkins.com',
-		// 	reason : 'I\'m hungry',
-		// 	score : 1,
-		// 	status : 'rejected', // admin can change to {'approved','rejected','crowd'}
-		// 	liked : false,
-		// 	description : 'Pumpkins are so yummy!',
-		// 	imageUrl : 'http://healthyrise.com/wp-content/uploads/2016/09/Pumpkin-5.gif',
-		// 	comments : 'It is just too much money right now.', // to be filled out by admin upon status change
-		// 	cost : 14.99
-		// }, {
-		// 	requestor : 'Josh',
-		// 	name : 'Pumpkins',
-		// 	url : 'pumpkins.com',
-		// 	reason : 'I\'m hungry',
-		// 	score : 5,
-		// 	status : 'crowd', // admin can change to {'approved','rejected','crowd'}
-		// 	liked : false,
-		// 	description : 'Pumpkins are so yummy!',
-		// 	imageUrl : 'http://healthyrise.com/wp-content/uploads/2016/09/Pumpkin-5.gif',
-		// 	comments : null, // to be filled out by admin upon status change
-		// 	cost : 14.99,
-		// 	raised : 10.99,
-		// 	donated: false
-		// }];
-		// TODO pull from backend
 	};
 
 	var updateWish = function(wish) {
@@ -102,12 +36,48 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 		// TODO send POST/PUT to change wish
 	};
 
+	var syncVotes = function(){
+		$http.get(baseUrl+'/get_vote')
+		.then(function(res){
+			for(var i in res.data){
+				_votes.push(res.data[i]);
+			}
+		}, function(err){
+			return err;
+		})
+	}
+
+	var getVotesByUser = function(attuid){
+		$http.get(baseUrl+'/get_vote?user_id='+attuid)
+		.then(function(res){
+			for(var i in res.data){
+				_votes.push(res.data[i]);
+			}
+		}, function(err){
+			return err;
+		});
+	}
+
+	var getVoteByWishAndUser = function(wish_id, attuid){
+		console.log(wish_id+":"+attuid);
+		$http.get(baseUrl+'/get_vote?wish_id='+wish_id+'&user_id='+attuid)
+		.then(function(res){
+			_vote = res.data[0];
+			console.log(_vote);
+		});
+	}
+
 	syncWishes();
+	// syncVotes();
 
 	return {
 		wishes : _wishes,
+		votes : _votes,
 		createWish : createWish,
 		syncWishes : syncWishes,
-		updateWish : updateWish
+		updateWish : updateWish,
+		syncVotes : syncVotes,
+		getVotesByUser : getVotesByUser,
+		getVoteByWishAndUser : getVoteByWishAndUser
 	};
 });

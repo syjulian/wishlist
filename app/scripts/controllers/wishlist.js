@@ -9,7 +9,7 @@
  */
 angular.module('wishlistApp')
   .controller('WishlistCtrl', function ($scope, $location, 
-                                        wishApiService, selectedWishService) {
+                                        wishApiService, selectedWishService, voteService) {
       $scope.statusSelect = '';
       $scope.orderSelect = 'name';
 
@@ -18,14 +18,19 @@ angular.module('wishlistApp')
 	  };
 
       $scope.wishes = wishApiService.wishes;
+      // wishApiService.syncVotes($scope.user.attuid);
+      wishApiService.syncVotes();
+      $scope.votes = wishApiService.votes;
 
       $scope.onLikeClick = function(wish) {
+          // voteService.toggleVote();
           wish.liked = !wish.liked;
           wishApiService.updateWish(wish);
       };
 
       $scope.selectWish = function(wish) {
         selectedWishService.setWish(wish);
+        voteService.setVote(wish.wish_id, $scope.user.attuid, $scope.votes);
 		selectedWishService.setBack('/wishlist');
 		$location.path('/wishDetails');
 	  };

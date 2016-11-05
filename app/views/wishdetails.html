@@ -40,7 +40,7 @@
 	<div class="button-container" ng-show="!isAdmin && !isCrowd">
 		<i class="glyphicon glyphicon-arrow-left blue-iconstyle" ng-click="goBack();" title="go back"></i>
 		<i class="glyphicon red-iconstyle"
-		ng-class="{'glyphicon-heart': wish.liked === true, 'glyphicon-heart-empty': wish.liked === false}"
+		ng-class="{'glyphicon-heart': vote.voted === 1, 'glyphicon-heart-empty': vote.voted === 0}"
 		title="like" ng-click="clickedHeart();" ng-show="wish.status == 'pending'"></i>
 	</div>
 
