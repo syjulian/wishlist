@@ -27,6 +27,7 @@ angular.module('wishlistApp').controller('WishdetailsCtrl', ['$scope', '$locatio
 
 		$scope.clickedHeart = function () {
 			voteService.toggleVote($scope.wish);
+			wishApiService.addVote($scope.vote, voteService.getScore);
 		};
 
 		$scope.donateMoney = function () {
@@ -79,6 +80,7 @@ angular.module('wishlistApp').controller('WishdetailsCtrl', ['$scope', '$locatio
 			statusService.setComment($scope.newComments);
 			$scope.wish.status = statusService.getStatus();
 			$scope.wish.comments = statusService.getComment();
+			wishApiService.updateStatus($scope.wish);
 			$scope.showFeedback = false;
 		};
 	}]);

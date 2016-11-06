@@ -38,36 +38,39 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 
 	//get all votes
 	var syncVotes = function(){
-		_votes=[];
+		// _votes=[];
 		$http.get(baseUrl+'/get_vote')
 		.then(function(res){
 			for(var i in res.data){
 				_votes.push(res.data[i]);
 			}
+			console.log('get all votes');
 		}, function(err){
 			return err;
 		})
 	}
 
 	var getVotesByUser = function(attuid){
-		_votes = [];
+		// _votes = [];
 		$http.get(baseUrl+'/get_vote?user_id='+attuid)
 		.then(function(res){
 			for(var i in res.data){
 				_votes.push(res.data[i]);
 			}
+			console.log('get votes by user');
 		}, function(err){
 			return err;
 		});
 	}
 
 	var getVoteByWish = function(wish_id){
-		_votes = []
+		// _votes = []
 		$http.get(baseUrl+'/get_vote?wish_id='+wish_id)
 		.then(function(res){
 			for(var i in res.data){
 				_votes.push(res.data[i]);
 			}
+			console.log('get votes by wish');
 		}, function(err){
 			return err;
 		})
@@ -82,6 +85,8 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 		$http.get(baseUrl+'/get_vote?wish_id='+wish_id+'&user_id='+attuid)
 		.then(function(res){
 			_vote = res.data[0];
+		}, function(err){
+			console.log('error: ');
 		});
 	}
 
@@ -94,8 +99,8 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 		});
 	}
 
-	var updateStatus = function(wish, new_status, new_comments){
-		$http.put(baseUrl+'/status', {wish_id: wish.wish_id, new_comment: wish.comments, new_status: wish.status})
+	var updateStatus = function(wish){
+		$http.put(baseUrl+'/status_update', {wish_id: wish.wish_id, comment: wish.comments, status: wish.status})
 		.then(function(res){
 			console.log('success');
 		}, function(err){
@@ -103,8 +108,21 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 		})
 	}
 
+	var addVote = function(vote){
+		console.log(vote);
+		$http.post(baseUrl+'/vote', {wish_id: vote.wish_id, user_id: vote.user_id, voted: vote.voted})
+		.then(function(res){
+			console.log('success');
+			_votes = [];
+			syncVotes();
+		}, function(err){
+			return err;
+		})
+	}
+
 	syncWishes();
-	// syncVotes();
+	syncVotes();
+	// getVoteByWish();
 
 	return {
 		wishes : _wishes,
@@ -116,6 +134,7 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 		getVotesByUser : getVotesByUser,
 		getVoteByWishAndUser : getVoteByWishAndUser,
 		updateCrowdfund : updateCrowdfund,
-		updateStatus : updateStatus
+		updateStatus : updateStatus,
+		addVote : addVote
 	};
 });
