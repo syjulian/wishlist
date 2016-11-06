@@ -74,6 +74,15 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 		});
 	}
 
+	var updateStatus = function(wish, new_status, new_comments){
+		$http.put(baseUrl+'/status', {wish_id: wish.wish_id, new_comment: wish.comments, new_status: wish.status})
+		.then(function(res){
+			console.log('success');
+		}, function(err){
+			return err;
+		})
+	}
+
 	syncWishes();
 	// syncVotes();
 
@@ -86,6 +95,7 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 		syncVotes : syncVotes,
 		getVotesByUser : getVotesByUser,
 		getVoteByWishAndUser : getVoteByWishAndUser,
-		updateCrowdfund : updateCrowdfund
+		updateCrowdfund : updateCrowdfund,
+		updateStatus : updateStatus
 	};
 });

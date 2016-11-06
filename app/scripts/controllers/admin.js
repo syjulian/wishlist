@@ -8,7 +8,7 @@
  * Controller of the wishlistApp
  */
 angular.module('wishlistApp')
-  .controller('AdminCtrl', function ($scope, $location, selectedWishService, wishApiService) {
+  .controller('AdminCtrl', function ($scope, $location, selectedWishService, wishApiService, statusService) {
 	$scope.wishes = wishApiService.wishes;
 	$scope.statusSelect = 'pending';
 	
@@ -22,6 +22,7 @@ angular.module('wishlistApp')
 	$scope.selectWish = function(wish) {
 		selectedWishService.setWish(wish);
 		selectedWishService.setBack('/admin');
+		statusService.setStatus(wish.status);
 		$location.path('/wishDetails');
 	};
 });

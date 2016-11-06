@@ -8,7 +8,7 @@
  * Controller of the wishlistApp
  */
 angular.module('wishlistApp').controller('WishdetailsCtrl', ['$scope', '$location', 'wishApiService', 'selectedWishService',
-	 'voteService', 'crowdfundService', function ($scope, $location, wishApiService, selectedWishService, voteService, crowdfundService) {
+	 'voteService', 'crowdfundService', 'statusService', function ($scope, $location, wishApiService, selectedWishService, voteService, crowdfundService, statusService) {
 		$scope.wish = selectedWishService.getWish();
 		$scope.vote = voteService.getVote();
 		$scope.wish.crowd_source = crowdfundService.getFund();
@@ -75,10 +75,10 @@ angular.module('wishlistApp').controller('WishdetailsCtrl', ['$scope', '$locatio
 		};
 
 		$scope.submitFeedback = function () {
-			console.log($scope.newComments);
-			// TODO: Call API to udpate wish
-			$scope.wish.status = $scope.newStatus;
-			$scope.wish.comments = $scope.newComments;
+			statusService.setStatus($scope.newStatus);
+			statusService.setComment($scope.newComments);
+			$scope.wish.status = statusService.getStatus();
+			$scope.wish.comments = statusService.getComment();
 			$scope.showFeedback = false;
 		};
 	}]);
