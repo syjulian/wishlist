@@ -59,11 +59,18 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 	}
 
 	var getVoteByWishAndUser = function(wish_id, attuid){
-		console.log(wish_id+":"+attuid);
 		$http.get(baseUrl+'/get_vote?wish_id='+wish_id+'&user_id='+attuid)
 		.then(function(res){
 			_vote = res.data[0];
-			console.log(_vote);
+		});
+	}
+
+	var updateCrowdfund = function(wish, donation){
+		$http.put(baseUrl+'/crowd_fund', {wish_id: wish.wish_id, contribution: donation})
+		.then(function(res){
+			console.log('success!')
+		}, function(err){
+			return err;
 		});
 	}
 
@@ -78,6 +85,7 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 		updateWish : updateWish,
 		syncVotes : syncVotes,
 		getVotesByUser : getVotesByUser,
-		getVoteByWishAndUser : getVoteByWishAndUser
+		getVoteByWishAndUser : getVoteByWishAndUser,
+		updateCrowdfund : updateCrowdfund
 	};
 });

@@ -15,8 +15,8 @@
 			<h4 class="pull-right">that costs <span class='wishcost'>${{wish.cost}}</span></h4>
 		</div>
 		<div class="row">
-			<h4 ng-show="{{isCrowd && wish.cost > wish.raised}}" class="pull-right">$$$ raised: <strong style="color: #00c853;">{{wish.raised.toFixed(2)}}</strong></h4>
-			<h4 ng-show="{{isCrowd && wish.cost <= wish.raised}}" class="pull-right">We've raised enough <strong style="color: #00c853">$$$</strong>!</h4>
+			<h4 ng-show="{{isCrowd && wish.cost > wish.crowd_source}}" class="pull-right">$$$ raised: <strong style="color: #00c853;">{{wish.crowd_source.toFixed(2)}}</strong></h4>
+			<h4 ng-show="{{isCrowd && wish.cost <= wish.crowd_source}}" class="pull-right">We've raised enough <strong style="color: #00c853">$$$</strong>!</h4>
 		</div>
 		<div class="row">
 			<h4><span>because...</span></h4>
@@ -62,7 +62,6 @@
 	<div class="button-container" ng-show="isCrowd">
 		<i class="glyphicon glyphicon-arrow-left blue-iconstyle" ng-click="goBack();" title="go to wishlist"></i>
 		<i class="glyphicon iconstyle glyphicon-usd green-iconstyle" title="donate!"
-		ng-class="{'spent-money': $scope.donated === true}"
 		ng-click="donateMoney()"> </i>
 		<div id="donate-box" ng-show="showInput">
 			<input type="number" name="money" ng-model="donation" />

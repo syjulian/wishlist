@@ -9,7 +9,7 @@
  */
 angular.module('wishlistApp')
   .controller('WishlistCtrl', function ($scope, $location, 
-                                        wishApiService, selectedWishService, voteService) {
+                                        wishApiService, selectedWishService, voteService, crowdfundService) {
       $scope.statusSelect = '';
       $scope.orderSelect = 'name';
 
@@ -20,9 +20,6 @@ angular.module('wishlistApp')
       $scope.wishes = wishApiService.wishes;
       wishApiService.syncVotes();
       $scope.votes = wishApiService.votes;
-
-      console.log($scope.wishes);
-      console.log($scope.votes);
 
       $scope.onLikeClick = function(wish) {
         //TODO: need to fix, it is now just fake sync, need to hook to the service
@@ -37,6 +34,8 @@ angular.module('wishlistApp')
       $scope.selectWish = function(wish) {
         selectedWishService.setWish(wish);
         voteService.setVote(wish.wish_id, $scope.user.attuid, $scope.votes);
+        crowdfundService.setFund(wish.crowd_source);
+
 		selectedWishService.setBack('/wishlist');
 		$location.path('/wishDetails');
 	  };
