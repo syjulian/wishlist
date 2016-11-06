@@ -36,7 +36,9 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 		// TODO send POST/PUT to change wish
 	};
 
+	//get all votes
 	var syncVotes = function(){
+		_votes=[];
 		$http.get(baseUrl+'/get_vote')
 		.then(function(res){
 			for(var i in res.data){
@@ -48,6 +50,7 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 	}
 
 	var getVotesByUser = function(attuid){
+		_votes = [];
 		$http.get(baseUrl+'/get_vote?user_id='+attuid)
 		.then(function(res){
 			for(var i in res.data){
@@ -56,6 +59,23 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 		}, function(err){
 			return err;
 		});
+	}
+
+	var getVoteByWish = function(wish_id){
+		_votes = []
+		$http.get(baseUrl+'/get_vote?wish_id='+wish_id)
+		.then(function(res){
+			for(var i in res.data){
+				_votes.push(res.data[i]);
+			}
+		}, function(err){
+			return err;
+		})
+	}
+
+	var getVoteCountByWish = function(wish_id){
+		getVoteByWish(wish_id);
+		return _votes.length;
 	}
 
 	var getVoteByWishAndUser = function(wish_id, attuid){
