@@ -28,6 +28,7 @@ angular.module('wishlistApp').controller('WishdetailsCtrl', ['$scope', '$locatio
 		$scope.clickedHeart = function () {
 			voteService.toggleVote($scope.wish);
 			wishApiService.addVote($scope.vote, voteService.getScore);
+			wishApiService.updateScore($scope.wish);
 		};
 
 		$scope.donateMoney = function () {

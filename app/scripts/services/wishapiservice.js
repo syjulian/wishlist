@@ -31,9 +31,15 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 
 	};
 
-	var updateWish = function(wish) {
-		$log.info('sending update of ', wish);
-		// TODO send POST/PUT to change wish
+	var updateScore = function(wish) {
+		$http.put(baseUrl+'/update_score', {wish_id: wish.wish_id, score: wish.score} )
+		.then(function(res){
+			console.log('success');
+			_wishes=[];
+			syncWishes();
+		}, function(err){
+			return err;
+		})
 	};
 
 	//get all votes
@@ -129,12 +135,13 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 		votes : _votes,
 		createWish : createWish,
 		syncWishes : syncWishes,
-		updateWish : updateWish,
+		// updateWish : updateWish,
 		syncVotes : syncVotes,
 		getVotesByUser : getVotesByUser,
 		getVoteByWishAndUser : getVoteByWishAndUser,
 		updateCrowdfund : updateCrowdfund,
 		updateStatus : updateStatus,
-		addVote : addVote
+		addVote : addVote,
+		updateScore : updateScore
 	};
 });
