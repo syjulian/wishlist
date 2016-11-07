@@ -12,12 +12,29 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 	var _wishes = [];
 	var _votes = [];
 	
-	var createWish = function(wish) {
-		return $http({
-			method : 'POST',
-			url : '/createWish',
-			data : wish
-		});
+	var createWish = function(wish, user) {
+		$http({
+			method: 'POST',
+			url: baseUrl+'/create_wish',
+			data: {
+				name: wish.name,
+				imageUrl: wish.imageUrl,
+				url: wish.url,
+				cost: wish.cost,
+				category: wish.category,
+				reason: wish.reason,
+				description: wish.description,
+				requester: user.attuid
+			},
+			headers: {'Content-Type': 'application/json'}
+		})
+		.then(function(res){
+			console.log('success');
+			_wishes=[];
+			syncWishes();
+		}, function(err){
+			return err;
+		})
 	};
 	var syncWishes = function() {
 		$http.get(baseUrl+'/get_wish').then(function(response){

@@ -7,8 +7,8 @@
  * # MakewishCtrl
  * Controller of the wishlistApp
  */
-angular.module('wishlistApp').controller('MakewishCtrl', ['$scope', '$location', '$window', '$log', 'wishApiService',
-function($scope, $location, $window, $log, wishApiService) {
+angular.module('wishlistApp').controller('MakewishCtrl', ['$scope', '$location', '$window', '$log', 'wishApiService', '$route',
+function($scope, $location, $window, $log, wishApiService, $route) {
 
 	$scope.wish = null;
 	$scope.errors = [];
@@ -29,14 +29,13 @@ function($scope, $location, $window, $log, wishApiService) {
 			}
 		}
 		if (valid) {
-			$scope.wish.user = 'DEFAULT USER';
 			$scope.wish.status = 'pending';
 			$log.info('creating wish: ', $scope.wish);
-			wishApiService.createWish($scope.wish).then(function successCallback(response) {
-				$log.info('Successfully created wish: ', response);
-			}, function errorCallback(response) {
-				$log.error('Error creating wish: ', response);
-			});
+			if($scope.wish.reason == "Other" && $scope.wish.otherReason != undefined){
+				$scope.wish.reason = $scope.wish.otherReason;
+			}
+			wishApiService.createWish($scope.wish, $scope.user);
+			$location.path('/wishlist');
 		} else {
 			$window.scrollTo(0, 0);
 		}
