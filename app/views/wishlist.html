@@ -40,11 +40,11 @@
       <span class="glyphicon glyphicon-remove status-icon red-iconstyle" 
             ng-show="wish.status === 'rejected'"></span> 
 	  <!-- toggle-able -->
-      <span ng-click="onLikeClick(wish)">
+      <span ng-click="onLikeClick(wish, $index)">
 	    <span class="glyphicon glyphicon-heart status-icon light-red-iconstyle" 
-              ng-show="liked && wish.status === 'pending'"></span>
+              ng-show="wishes[$index].liked && wish.status === 'pending'"></span>
 	    <span class="glyphicon glyphicon-heart-empty status-icon light-red-iconstyle" 
-              ng-show="!liked && wish.status === 'pending'"></span>
+              ng-show="!wishes[$index].liked && wish.status === 'pending'"></span>
       </span>
       <strong ng-click="selectWish(wish)">{{wish.name}}</strong>
       <span class="badge" ng-show="wish.status !== 'crowd'">{{wish.score}}</span>

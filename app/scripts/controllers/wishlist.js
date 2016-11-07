@@ -20,16 +20,13 @@ angular.module('wishlistApp')
       $scope.wishes = wishApiService.wishes;
       $scope.votes = wishApiService.votes;
 
-      $scope.onLikeClick = function(wish) {
-        //TODO: UI is not reflecting the heart/empty heart style correctly
-        //need a way to add vote changes to individual wish with status = pending
-        //voteService currently handles the vote on detail page correctly
-        
+      $scope.onLikeClick = function(wish, index) {
           voteService.setVote(wish, $scope.user.attuid, $scope.votes);
+          $scope.vote = voteService.getVote();
           voteService.toggleVote(wish);
-          $scope.liked = voteService.getVote().voted === 1? true:false;
-          // $scope.liked = !$scope.liked;
-          wishApiService.updateWish(wish);
+          wishApiService.addVote($scope.vote, voteService.getScore);
+			    wishApiService.updateScore(wish);
+          $scope.wishes[index].liked = voteService.getVote().voted === 1? true:false;
       };
 
       $scope.selectWish = function(wish) {

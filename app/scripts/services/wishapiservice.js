@@ -30,6 +30,7 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 		})
 		.then(function(res){
 			console.log('success');
+			addVote({wish_id: wish.wish_id, user_id: user.attuid, voted: 1});
 			_wishes=[];
 			syncWishes();
 		}, function(err){
@@ -132,7 +133,6 @@ angular.module('wishlistApp').factory('wishApiService', function($http, $log) {
 	}
 
 	var addVote = function(vote){
-		console.log(vote);
 		$http.post(baseUrl+'/vote', {wish_id: vote.wish_id, user_id: vote.user_id, voted: vote.voted})
 		.then(function(res){
 			console.log('success');

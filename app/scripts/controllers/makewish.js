@@ -35,6 +35,7 @@ function($scope, $location, $window, $log, wishApiService, $route) {
 				$scope.wish.reason = $scope.wish.otherReason;
 			}
 			wishApiService.createWish($scope.wish, $scope.user);
+			
 			$location.path('/wishlist');
 		} else {
 			$window.scrollTo(0, 0);
