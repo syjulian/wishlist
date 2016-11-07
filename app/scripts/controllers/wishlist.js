@@ -9,7 +9,7 @@
  */
 angular.module('wishlistApp')
   .controller('WishlistCtrl', function ($scope, $location, 
-                                        wishApiService, selectedWishService, voteService, crowdfundService) {
+                                        wishApiService, selectedWishService, voteService, crowdfundService, $route) {
       $scope.statusSelect = '';
       $scope.orderSelect = 'name';
 
@@ -19,7 +19,7 @@ angular.module('wishlistApp')
 
       $scope.wishes = wishApiService.wishes;
       $scope.votes = wishApiService.votes;
-
+    
       $scope.onLikeClick = function(wish, index) {
           voteService.setVote(wish, $scope.user.attuid, $scope.votes);
           $scope.vote = voteService.getVote();
@@ -27,6 +27,7 @@ angular.module('wishlistApp')
           wishApiService.addVote($scope.vote, voteService.getScore);
 			    wishApiService.updateScore(wish);
           $scope.wishes[index].liked = voteService.getVote().voted === 1? true:false;
+          $route.reload();
       };
 
       $scope.selectWish = function(wish) {

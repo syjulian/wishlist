@@ -8,7 +8,7 @@
  * Controller of the wishlistApp
  */
 angular.module('wishlistApp').controller('WishdetailsCtrl', ['$scope', '$location', 'wishApiService', 'selectedWishService',
-	 'voteService', 'crowdfundService', 'statusService', function ($scope, $location, wishApiService, selectedWishService, voteService, crowdfundService, statusService) {
+	 'voteService', 'crowdfundService', 'statusService', '$route', function ($scope, $location, wishApiService, selectedWishService, voteService, crowdfundService, statusService, $route) {
 		$scope.wish = selectedWishService.getWish();
 		$scope.vote = voteService.getVote();
 		$scope.wish.crowd_source = crowdfundService.getFund();
